@@ -49,7 +49,7 @@
         .thumb-row { display: flex; flex-wrap: wrap; gap: 4px; }
         .thumb { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; display: block; cursor: zoom-in; }
         .thumb-placeholder { width: 40px; height: 40px; border-radius: 6px; background: #f2f0ec; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #c4bfb8; }
-        .msg-cell { min-width: 220px; color: #4a4440; white-space: pre-wrap; word-break: break-word; font-size: 0.82rem; line-height: 1.45; }
+        .msg-cell { max-width: 240px; color: #4a4440; font-size: 0.82rem; }
         /* Pagination */
         .pg-admin { display: flex; gap: 6px; align-items: center; margin-top: 16px; flex-wrap: wrap; font-size: 0.82rem; }
         .pg-admin a, .pg-admin span { padding: 5px 10px; border-radius: 7px; border: 1px solid #d4d0cb; color: #1a1614; text-decoration: none; }
@@ -133,8 +133,8 @@
                         <th>Urutan</th>
                         <th>Foto</th>
                         <th>Nama</th>
-                        <th>Pesan</th>
                         <th>Relasi</th>
+                        <th>Pesan</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -160,10 +160,10 @@
                                 @endif
                             </td>
                             <td style="font-weight:500; white-space:nowrap;">{{ $tribute->name }}</td>
+                            <td style="color:#9e9890; white-space:nowrap;">{{ implode(', ', $tribute->relations ?? []) }}</td>
                             <td>
-                                <span class="msg-cell">{{ $tribute->message }}</span>
+                                <span class="msg-cell" title="{{ $tribute->message }}">{{ mb_strimwidth($tribute->message, 0, 50, '…') }}</span>
                             </td>
-                            <td style="color:#9e9890;">{{ implode(', ', $tribute->relations ?? []) }}</td>
                             <td>
                                 <span class="badge {{ $tribute->is_hidden ? 'badge-off' : 'badge-on' }}">
                                     {{ $tribute->is_hidden ? 'Disembunyikan' : 'Tampil' }}

@@ -98,7 +98,8 @@ class AdminTemporaryController extends Controller
         }
 
         foreach ((array) $request->input('orders', []) as $id => $order) {
-            Tribute::where('id', (int) $id)->update(['sort_order' => (int) $order]);
+            $val = (trim((string) $order) === '' || (int) $order < 1) ? 9999 : (int) $order;
+            Tribute::where('id', (int) $id)->update(['sort_order' => $val]);
         }
 
         return back()->with('success', 'Urutan disimpan.');
