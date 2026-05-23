@@ -1,11 +1,29 @@
 <?php
 
 use App\Http\Controllers\MemorialPageController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/search', function (Request $request) {
+    $q = trim((string) $request->query('q', ''));
+    $page = \App\Models\MemorialPage::query()
+        ->where('is_active', true)
+        ->where(function ($query) use ($q) {
+            $query->whereRaw('LOWER(person_name) LIKE ?', ['%' . strtolower($q) . '%'])
+                  ->orWhereRaw('LOWER(slug) LIKE ?', ['%' . strtolower($q) . '%']);
+        })
+        ->first();
+
+    if ($page) {
+        return redirect()->route('memorial.show', ['slug' => $page->slug]);
+    }
+
+    return redirect()->route('home')->with('search_not_found', true);
+})->name('memorial.search');
 
 Route::get('/ericpramono-preview', function () {
     $memorialPage = \App\Models\MemorialPage::query()

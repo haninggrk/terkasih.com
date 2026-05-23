@@ -15,7 +15,7 @@
 
         body {
             min-height: 100vh;
-            background: #eae6e0;
+            background: radial-gradient(circle at top, #fff 0%, #faf9f7 65%);
             font-family: 'DM Sans', sans-serif;
             color: #1a1614;
             display: flex;
@@ -108,6 +108,42 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
+
+        /* ── Search ── */
+        .search-bar {
+            margin-top: 28px;
+            display: flex;
+            border: 1px solid #d8d0c8;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 8px 28px rgba(74,59,48,0.07);
+            overflow: hidden;
+        }
+        .search-bar input {
+            flex: 1;
+            border: none;
+            padding: 13px 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #1a1614;
+            background: transparent;
+            outline: none;
+        }
+        .search-bar input::placeholder { color: #b8b3ac; }
+        .search-bar button {
+            border: none;
+            background: #2f2b2a;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 13px 22px;
+            border-radius: 999px;
+            margin: 5px;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+        }
+        .search-bar button:hover { background: #4a4440; }
     </style>
 </head>
 <body>
@@ -126,6 +162,11 @@
         <p class="tagline">Ruang digital untuk mengenang<br>dan merayakan kehidupan orang-orang tercinta.</p>
 
         <p class="sub">Setiap kenangan berharga. Setiap doa berarti.</p>
+
+        <form class="search-bar" action="{{ route('memorial.search') }}" method="GET">
+            <input type="text" name="q" placeholder="Nama orang terkasih" autocomplete="off" required>
+            <button type="submit">Cari</button>
+        </form>
 
         <p class="footer">terkasih.com</p>
     </div>
