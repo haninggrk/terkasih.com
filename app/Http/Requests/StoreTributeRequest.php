@@ -33,6 +33,11 @@ class StoreTributeRequest extends FormRequest
         ];
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return url()->previous().'#memories';
+    }
+
     protected function prepareForValidation(): void
     {
         $this->merge([

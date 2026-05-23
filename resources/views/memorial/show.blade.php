@@ -471,18 +471,31 @@
             line-height: 1.6;
         }
 
-        .alert-error {
-            margin: 0 32px;
-            padding: 12px 16px;
+        .form-notice {
+            margin: 0 0 18px;
+            padding: 13px 16px;
             border-radius: 8px;
-            background: #fdf0ee;
-            border: 1px solid #e8c0b8;
+            background: #fdf8f5;
+            border: 1px solid #e0cfc9;
+            text-align: left;
         }
-        .alert-error ul {
+        .form-notice p.fn-title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #7c4038;
+            margin-bottom: 5px;
+            letter-spacing: 0.01em;
+        }
+        .form-notice ul {
             list-style: none;
-            font-size: 0.82rem;
-            color: #8a3028;
-            line-height: 1.7;
+            font-size: 0.8rem;
+            color: #8a5248;
+            line-height: 1.75;
+            padding-left: 2px;
+        }
+        .form-notice ul li::before {
+            content: '— ';
+            opacity: 0.6;
         }
 
         /* ── Footer ── */
@@ -581,16 +594,6 @@
 
     @if (session('status'))
         <div class="alert-success" style="margin-top: 18px;">{{ session('status') }}</div>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert-error" style="margin-top: 18px;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
     @endif
 
     {{-- ── Divider ── --}}
@@ -721,6 +724,17 @@
         </div>
 
         <p class="memories-sub">Bagikan kenangan, doa, dan pesan kasih untuk keluarga</p>
+
+        @if ($errors->any())
+            <div class="form-notice">
+                <p class="fn-title">Mohon lengkapi form di bawah ini</p>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form class="tribute-form"
             action="{{ route('memorial.tributes.store', ['slug' => $memorialPage->slug]) }}"
