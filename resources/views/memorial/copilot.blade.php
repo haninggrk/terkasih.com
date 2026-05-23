@@ -11,13 +11,13 @@
     <meta property="og:url"         content="{{ url()->current() }}">
     <meta property="og:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta property="og:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta property="og:image"       content="{{ url('images/eric-og.png') }}">
+    <meta property="og:image"       content="{{ url('images/eric-og.jpg') }}">
     <meta property="og:image:width" content="1091">
     <meta property="og:image:height" content="1280">
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta name="twitter:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta name="twitter:image"       content="{{ url('images/eric-og.png') }}">
+    <meta name="twitter:image"       content="{{ url('images/eric-og.jpg') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=Inria+Serif:ital,wght@0,300;1,300;1,400&family=Noto+Serif+Display:ital,wdth,wght@0,62.5,300;0,62.5,400;0,62.5,600;1,62.5,300&display=swap" rel="stylesheet">
 
