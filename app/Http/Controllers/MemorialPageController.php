@@ -70,6 +70,12 @@ class MemorialPageController extends Controller
         $memorialPage = MemorialPage::query()->where('slug', $slug)->firstOrFail();
         $payload = $request->validated();
 
+        $relations = $payload['relations'];
+        if (in_array('Lainnya', $relations) && ! empty($payload['relation_other'])) {
+            $custom = trim($payload['relation_other']);
+            $relations = array_map(fn ($r) => $r === 'Lainnya' ? $custom : $r, $relations);
+        }
+
         $photos = [];
         foreach ($request->file('photos', []) as $photo) {
             $photos[] = $imageCompressor->compressAndStore($photo, 'memorial/tributes');
@@ -78,7 +84,7 @@ class MemorialPageController extends Controller
         Tribute::query()->create([
             'memorial_page_id' => $memorialPage->id,
             'name' => $payload['name'],
-            'relations' => $payload['relations'],
+            'relations' => $relations,
             'message' => $payload['message'],
             'photos' => $photos,
             'is_highlighted' => false,

@@ -732,10 +732,14 @@
                 @foreach (['Teman', 'Saudara', 'Rekan kerja', 'Tetangga', 'Lainnya'] as $relation)
                     <label>
                         <input type="checkbox" name="relations[]" value="{{ $relation }}"
-                            {{ in_array($relation, old('relations', [])) ? 'checked' : '' }}>
+                            {{ in_array($relation, old('relations', [])) ? 'checked' : '' }}
+                            {{ $relation === 'Lainnya' ? 'id="cb-lainnya"' : '' }}>
                         {{ $relation }}
                     </label>
                 @endforeach
+                <div id="lainnya-input" style="display:none; margin-top: 6px;">
+                    <input type="text" name="relation_other" placeholder="Tulis relasi Anda..." value="{{ old('relation_other') }}" style="margin-bottom:0;">
+                </div>
             </div>
             <textarea name="message" placeholder="Pesan, doa, cerita, atau kenangan..." required>{{ old('message') }}</textarea>
             <input type="file" name="photos[]" multiple accept="image/jpeg,image/png,image/webp">
@@ -797,6 +801,17 @@
     document.querySelectorAll('.reveal').forEach(function (el) {
         obs.observe(el);
     });
+
+    // 'Lainnya' custom relation input
+    var cbLainnya = document.getElementById('cb-lainnya');
+    var lainnyaWrap = document.getElementById('lainnya-input');
+    if (cbLainnya && lainnyaWrap) {
+        function syncLainnya() {
+            lainnyaWrap.style.display = cbLainnya.checked ? 'block' : 'none';
+        }
+        cbLainnya.addEventListener('change', syncLainnya);
+        syncLainnya();
+    }
 }());
 </script>
 </body>

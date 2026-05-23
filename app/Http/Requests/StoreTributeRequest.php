@@ -26,6 +26,7 @@ class StoreTributeRequest extends FormRequest
             'name' => ['required', 'string', 'max:120'],
             'relations' => ['required', 'array', 'min:1'],
             'relations.*' => ['required', 'string', 'in:Teman,Saudara,Rekan kerja,Tetangga,Lainnya'],
+            'relation_other' => ['nullable', 'string', 'max:80'],
             'message' => ['required', 'string', 'max:2000'],
             'photos' => ['nullable', 'array', 'max:3'],
             'photos.*' => ['nullable', File::image()->max(4 * 1024)],
