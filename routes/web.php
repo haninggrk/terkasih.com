@@ -7,9 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/eric-pramono-2', function () {
+Route::get('/ericpramono-preview', function () {
     $memorialPage = \App\Models\MemorialPage::query()
-        ->where('slug', 'eric-pramono')
+        ->where('slug', 'ericpramono')
         ->firstOrFail();
 
     $tributes = \App\Models\Tribute::query()
@@ -34,7 +34,7 @@ Route::get('/eric-pramono-2', function () {
 })->name('memorial.copilot');
 
 Route::prefix('{slug}')
-    ->whereIn('slug', ['eric-pramono'])
+    ->whereIn('slug', ['ericpramono'])
     ->controller(MemorialPageController::class)
     ->group(function (): void {
         Route::get('/', 'show')->name('memorial.show');

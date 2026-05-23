@@ -13,7 +13,7 @@ class MemorialPageSeeder extends Seeder
     public function run(): void
     {
         MemorialPage::query()->updateOrCreate(
-            ['slug' => 'eric-pramono'],
+            ['slug' => 'ericpramono'],
             [
                 'person_name' => 'Eric Pramono',
                 'birth_date' => '1978-01-12',

@@ -588,8 +588,27 @@
         </div>
 
         <div class="section-block">
-            <p class="s-label">Ayah mertua:</p>
+            <p class="s-label">Papa:</p>
+            <p class="s-value sm">Pek Tji Kiong (†)</p>
+        </div>
+
+        <div class="section-block">
+            <p class="s-label">Papa mertua:</p>
             <p class="s-value sm">Ong Tjing Fong (Edi Yongki)</p>
+        </div>
+
+        <div class="section-block">
+            <p class="s-label">Mama:</p>
+            <p class="s-value sm">Tienneke Hartanto (†)</p>
+        </div>
+
+        <div class="section-block">
+            <p class="s-label">Mama mertua:</p>
+            <p class="s-value sm">Lie Kwik Djin (†)</p>
+        </div>
+
+        <div class="section-block">
+            <p class="s-value sm" style="font-style: italic;">Beserta segenap famili kami tercinta</p>
         </div>
 
     </div>
@@ -646,11 +665,6 @@
 
     {{-- ── Support ── --}}
     <div class="section" id="support">
-        <p class="support-intro">
-            Untuk ungkapan kasih belasungkawa<br>
-            dari keluarga &amp; sahabat silahkan melihat<br>
-            informasi berikut
-        </p>
         <p class="support-note">
             Bagi keluarga dan sahabat yang ingin menyampaikan<br>
             tanda kasih kepada keluarga dapat klik tombol di bawah ini.
