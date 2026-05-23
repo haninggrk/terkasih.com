@@ -190,10 +190,10 @@
 
         <p class="sub">Setiap kenangan berharga. Setiap doa berarti.</p>
 
-        <form class="search-bar" action="{{ route('memorial.search') }}" method="GET">
+        {{-- <form class="search-bar" action="{{ route('memorial.search') }}" method="GET">
             <input type="text" name="q" placeholder="Nama orang terkasih" autocomplete="off" required>
             <button type="submit">Cari</button>
-        </form>
+        </form> --}}
 
         <p class="contact">
             <strong>Buat halaman kenangan</strong>
