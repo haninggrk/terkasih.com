@@ -513,7 +513,7 @@
 
         /* ── Hero entrance ── */
         @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(18px); }
+            from { opacity: 0; transform: translateY(-14px); }
             to   { opacity: 1; transform: translateY(0); }
         }
         .hero-florals { animation: fadeSlideUp 1.1s ease both; }
@@ -522,10 +522,9 @@
         /* ── Scroll reveal ── */
         .reveal {
             opacity: 0;
-            transform: translateY(26px);
-            transition: opacity 0.72s ease, transform 0.72s ease;
+            transition: opacity 0.72s ease;
         }
-        .reveal.visible { opacity: 1; transform: none; }
+        .reveal.visible { opacity: 1; }
     </style>
 </head>
 <body>
