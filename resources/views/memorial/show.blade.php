@@ -749,20 +749,25 @@
 
         <div class="section-block reveal" data-delay="160">
             <p class="s-label">Ibadah Penghiburan</p>
-            <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
+            <p class="s-value">Senin, 25 Mei 2026 Pk. 19:00 WIB</p>
         </div>
 
         <div class="section-block reveal" data-delay="240">
+            <p class="s-label">Ibadah Penghiburan</p>
+            <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
+        </div>
+
+        <div class="section-block reveal" data-delay="320">
             <p class="s-label">Ibadah Pemberangkatan</p>
             <p class="s-value">Rabu, 27 Mei 2026 Pk. 09:30 WIB</p>
         </div>
 
-        <div class="section-block reveal" data-delay="320">
+        <div class="section-block reveal" data-delay="400">
             <p class="s-label">Pemberangkatan</p>
             <p class="s-value">Rabu, 27 Mei 2026 Pk. 10:00 WIB</p>
         </div>
 
-        <div class="section-block reveal" data-delay="400">
+        <div class="section-block reveal" data-delay="480">
             <p class="s-label">Dimakamkan di</p>
             <p class="s-value">Makam Eka Praya</p>
         </div>
