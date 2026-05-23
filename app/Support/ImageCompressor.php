@@ -51,13 +51,13 @@ class ImageCompressor
             bin2hex(random_bytes(4))
         );
 
-        $targetPath = storage_path('app/public/' . $filename);
+        $targetPath = storage_path('app/public/'.$filename);
         $targetDirectory = dirname($targetPath);
         if (is_dir($targetDirectory) === false) {
             mkdir($targetDirectory, 0755, true);
         }
 
-        imagejpeg($canvas, $targetPath, 78);
+        imagejpeg($canvas, $targetPath, 90);
         imagedestroy($canvas);
         imagedestroy($sourceImage);
 

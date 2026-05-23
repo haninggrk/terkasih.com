@@ -27,7 +27,7 @@ class MemorialPageController extends Controller
             ->orderByDesc('is_highlighted')
             ->orderBy('sort_order')
             ->latest()
-            ->paginate(6, ['*'], 'tributes_page')
+            ->paginate(3, ['*'], 'tributes_page')
             ->fragment('memories');
 
         $rsvps = Rsvp::query()

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\MemorialPageController;
+use App\Models\MemorialPage;
+use App\Models\Rsvp;
+use App\Models\Tribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -10,11 +13,11 @@ Route::get('/', function () {
 
 Route::get('/search', function (Request $request) {
     $q = trim((string) $request->query('q', ''));
-    $page = \App\Models\MemorialPage::query()
+    $page = MemorialPage::query()
         ->where('is_active', true)
         ->where(function ($query) use ($q) {
-            $query->whereRaw('LOWER(person_name) LIKE ?', ['%' . strtolower($q) . '%'])
-                  ->orWhereRaw('LOWER(slug) LIKE ?', ['%' . strtolower($q) . '%']);
+            $query->whereRaw('LOWER(person_name) LIKE ?', ['%'.strtolower($q).'%'])
+                ->orWhereRaw('LOWER(slug) LIKE ?', ['%'.strtolower($q).'%']);
         })
         ->first();
 
@@ -26,19 +29,19 @@ Route::get('/search', function (Request $request) {
 })->name('memorial.search');
 
 Route::get('/ericpramono-preview', function () {
-    $memorialPage = \App\Models\MemorialPage::query()
+    $memorialPage = MemorialPage::query()
         ->where('slug', 'ericpramono')
         ->firstOrFail();
 
-    $tributes = \App\Models\Tribute::query()
+    $tributes = Tribute::query()
         ->whereBelongsTo($memorialPage)
         ->orderByDesc('is_highlighted')
         ->orderBy('sort_order')
         ->latest()
-        ->paginate(6, ['*'], 'tributes_page')
+        ->paginate(3, ['*'], 'tributes_page')
         ->fragment('memories');
 
-    $rsvps = \App\Models\Rsvp::query()
+    $rsvps = Rsvp::query()
         ->whereBelongsTo($memorialPage)
         ->latest()
         ->limit(8)

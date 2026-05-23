@@ -402,9 +402,9 @@
         .tribute-card {
             border: 1px solid #e8e4df;
             border-radius: 10px;
-            padding: 14px 16px;
             background: #ffffff;
             text-align: left;
+            overflow: hidden;
         }
         .tribute-card.highlighted {
             border-color: #c0bbb4;
@@ -412,38 +412,74 @@
             background: #f8f7f5;
         }
 
-        .tc-body { flex: 1; min-width: 0; }
+        /* Photos: edge-to-edge at top of card */
+        .tc-photos {
+            display: flex;
+            gap: 2px;
+            flex-wrap: nowrap;
+        }
+        .tc-photos img {
+            flex: 1 1 0;
+            min-width: 0;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 0;
+            cursor: zoom-in;
+            transition: opacity 0.15s;
+        }
+        .tc-photos img:hover { opacity: 0.88; }
+        .tc-photos[data-count="1"] img { height: 210px; }
+        .tc-photos[data-count="2"] img { height: 160px; }
+        .tc-photos[data-count="3"] img { height: 130px; }
 
-        .tc-name {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: #1a1614;
-            margin-bottom: 2px;
-        }
-        .tc-relation {
-            font-size: 0.76rem;
-            color: #9e9890;
-            margin-bottom: 8px;
-        }
+        /* Card body */
+        .tc-body { padding: 13px 16px 15px; }
+
         .tc-message {
             font-family: 'Inria Serif', serif;
             font-size: 0.88rem;
             line-height: 1.68;
             color: #3e3832;
+            margin-bottom: 12px;
         }
-        .tc-photos {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-top: 10px;
+
+        .tc-footer {
+            border-top: 1px solid #eeebe6;
+            padding-top: 9px;
         }
-        .tc-photos img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 7px;
-            border: 1px solid #e8e4df;
+
+        .tc-name {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.87rem;
+            color: #1a1614;
+            margin-bottom: 2px;
+        }
+        .tc-relation {
+            font-size: 0.74rem;
+            color: #9e9890;
+        }
+
+        /* ── Photo modal ── */
+        #photo-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(18, 14, 12, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+        #photo-modal.open { display: flex; }
+        #pm-img {
+            max-width: 90vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+            cursor: default;
         }
 
         .empty-state {
@@ -757,25 +793,29 @@
             </div>
             <textarea name="message" placeholder="Pesan, doa, cerita, atau kenangan..." required>{{ old('message') }}</textarea>
             <input type="file" name="photos[]" multiple accept="image/jpeg,image/png,image/webp">
-            <p class="form-hint"></p>
+            <p class="form-hint">Foto opsional &middot; maks. 3 foto (JPG/PNG/WebP)</p>
             <button class="btn-fill" type="submit">Kirim Kenangan</button>
         </form>
 
         <div class="tribute-cards">
             @forelse ($tributes as $tribute)
                 <article class="tribute-card {{ $tribute->is_highlighted ? 'highlighted' : '' }}">
-                    <p class="tc-name">{{ $tribute->name }}</p>
-                    @if (!empty($tribute->relations))
-                        <p class="tc-relation">{{ implode(', ', $tribute->relations) }}</p>
-                    @endif
-                    <p class="tc-message">{{ $tribute->message }}</p>
                     @if (!empty($tribute->photos))
-                        <div class="tc-photos">
+                        <div class="tc-photos" data-count="{{ count($tribute->photos) }}">
                             @foreach ($tribute->photos as $photo)
-                                <img src="{{ asset('storage/' . $photo) }}" alt="Foto kenangan">
+                                <img class="tc-photo-img" src="{{ asset('storage/' . $photo) }}" alt="Foto kenangan">
                             @endforeach
                         </div>
                     @endif
+                    <div class="tc-body">
+                        <p class="tc-message">{{ $tribute->message }}</p>
+                        <div class="tc-footer">
+                            <p class="tc-name">{{ $tribute->name }}</p>
+                            @if (!empty($tribute->relations))
+                                <p class="tc-relation">{{ implode(', ', $tribute->relations) }}</p>
+                            @endif
+                        </div>
+                    </div>
                 </article>
             @empty
                 <div class="empty-state">
@@ -796,6 +836,11 @@
         <a class="footer-brand" href="{{ route('home') }}">terkasih.com</a>
     </footer>
 
+</div>
+
+{{-- Photo lightbox modal --}}
+<div id="photo-modal" role="dialog" aria-modal="true" aria-label="Pratinjau foto">
+    <img id="pm-img" src="" alt="Foto kenangan diperbesar">
 </div>
 
 <script>
@@ -825,6 +870,26 @@
         }
         cbLainnya.addEventListener('change', syncLainnya);
         syncLainnya();
+    }
+
+    // Photo lightbox
+    var modal = document.getElementById('photo-modal');
+    var pmImg = document.getElementById('pm-img');
+    if (modal && pmImg) {
+        document.querySelectorAll('.tc-photo-img').forEach(function (img) {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                pmImg.src = this.src;
+                modal.classList.add('open');
+            });
+        });
+        modal.addEventListener('click', function () {
+            modal.classList.remove('open');
+            pmImg.src = '';
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') { modal.classList.remove('open'); pmImg.src = ''; }
+        });
     }
 }());
 </script>
