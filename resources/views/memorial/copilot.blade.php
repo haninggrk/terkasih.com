@@ -597,9 +597,11 @@
             font-size: 0.76rem;
             color: #9e9890;
             letter-spacing: 0.08em;
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #c4bfb8;
         }
-        .footer-brand:hover { color: #4a4440; }
+        .footer-brand:hover { color: #4a4440; text-decoration-color: #4a4440; }
 
         /* ── Hero entrance ── */
         @keyframes fadeSlideUp {
