@@ -1,11 +1,21 @@
 <?php
 
+use App\Http\Controllers\AdminTemporaryController;
 use App\Http\Controllers\MemorialPageController;
 use App\Models\MemorialPage;
 use App\Models\Rsvp;
 use App\Models\Tribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+// ── Admin Temporary ──
+Route::get('/admin-temporary', [AdminTemporaryController::class, 'loginForm'])->name('admin-tmp.login');
+Route::post('/admin-temporary/login', [AdminTemporaryController::class, 'login'])->name('admin-tmp.login.post');
+Route::post('/admin-temporary/logout', [AdminTemporaryController::class, 'logout'])->name('admin-tmp.logout');
+Route::get('/admin-temporary/dashboard', [AdminTemporaryController::class, 'dashboard'])->name('admin-tmp.dashboard');
+Route::post('/admin-temporary/tributes/{id}/toggle', [AdminTemporaryController::class, 'toggleTribute'])->name('admin-tmp.tribute.toggle');
+Route::post('/admin-temporary/sort-orders', [AdminTemporaryController::class, 'updateSortOrders'])->name('admin-tmp.sort-orders');
+Route::post('/admin-temporary/toggle-support', [AdminTemporaryController::class, 'toggleSupport'])->name('admin-tmp.toggle-support');
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +45,7 @@ Route::get('/ericpramono-preview', function () {
 
     $tributes = Tribute::query()
         ->whereBelongsTo($memorialPage)
+        ->where('is_hidden', false)
         ->orderByDesc('is_highlighted')
         ->orderBy('sort_order')
         ->latest()

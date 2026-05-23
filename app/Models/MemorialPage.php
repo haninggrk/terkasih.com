@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MemorialPage extends Model
 {
@@ -34,6 +34,7 @@ class MemorialPage extends Model
         'support_intro_en',
         'support_account_placeholder',
         'is_active',
+        'support_hidden',
     ];
 
     /**
@@ -46,6 +47,7 @@ class MemorialPage extends Model
             'death_date' => 'date',
             'children' => 'array',
             'is_active' => 'boolean',
+            'support_hidden' => 'boolean',
         ];
     }
 

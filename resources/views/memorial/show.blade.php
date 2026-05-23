@@ -776,8 +776,8 @@
         <span class="div-line"></span>
     </div>
 
-    {{-- ── Support (hidden — uncomment to show) ── --}}
-    {{-- 
+    {{-- ── Support (toggled via admin panel) ── --}}
+    @if (!$memorialPage->support_hidden)
     <div class="section reveal" id="support">
         <p class="support-note">
             Bagi keluarga dan sahabat yang ingin menyampaikan<br>
@@ -793,7 +793,7 @@
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
     </div>
-    --}}
+    @endif
 
     {{-- ── Memories ── --}}
     <div class="section reveal" id="memories">

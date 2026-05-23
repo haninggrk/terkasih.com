@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tribute extends Model
 {
@@ -18,6 +18,7 @@ class Tribute extends Model
         'photos',
         'is_highlighted',
         'sort_order',
+        'is_hidden',
     ];
 
     /**
@@ -29,6 +30,7 @@ class Tribute extends Model
             'relations' => 'array',
             'photos' => 'array',
             'is_highlighted' => 'boolean',
+            'is_hidden' => 'boolean',
         ];
     }
 

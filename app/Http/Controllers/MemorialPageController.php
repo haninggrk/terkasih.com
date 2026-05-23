@@ -24,6 +24,7 @@ class MemorialPageController extends Controller
 
         $tributes = Tribute::query()
             ->whereBelongsTo($memorialPage)
+            ->where('is_hidden', false)
             ->orderByDesc('is_highlighted')
             ->orderBy('sort_order')
             ->latest()
