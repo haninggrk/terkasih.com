@@ -435,7 +435,7 @@
 
         .tc-message {
             font-family: 'Inria Serif', serif;
-            font-size: 0.88rem;
+            font-size: 1rem;
             line-height: 1.68;
             color: #3e3832;
             margin-bottom: 12px;
@@ -781,7 +781,7 @@
                     <label>
                         <input type="checkbox" name="relations[]" value="{{ $relation }}"
                             {{ in_array($relation, old('relations', [])) ? 'checked' : '' }}
-                            {{ $relation === 'Lainnya' ? 'id="cb-lainnya"' : '' }}>
+                            @if($relation === 'Lainnya') id="cb-lainnya" @endif>
                         {{ $relation }}
                     </label>
                 @endforeach
