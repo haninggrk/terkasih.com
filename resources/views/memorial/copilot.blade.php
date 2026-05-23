@@ -574,8 +574,6 @@
                 Telah berpulang ke rumah Bapa dengan tenang<br>
                 pada hari Sabtu, 23 Mei 2026 Pk. 07:26 WIB
             </p>
-
-            <p class="hero-subtitle">Suami, Papa, Menantu, Kakak Tercinta</p>
         </div>
     </section>
 
@@ -602,6 +600,8 @@
 
     {{-- ── Family ── --}}
     <div class="section" id="family">
+
+        <p class="s-label" style="margin-bottom: 16px;">Kami yang mengasihi</p>
 
         <div class="section-block reveal" data-delay="0">
             <p class="s-label">Istri tercinta:</p>
