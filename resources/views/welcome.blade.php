@@ -102,10 +102,12 @@
 
         /* ── Footer ── */
         .footer {
-            margin-top: 40px;
-            font-size: 0.72rem;
-            color: #b8b3ac;
-            letter-spacing: 0.08em;
+            position: fixed;
+            bottom: 20px;
+            right: 24px;
+            font-size: 0.7rem;
+            color: #c4bfb8;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
@@ -147,10 +149,21 @@
 
         /* ── Contact ── */
         .contact {
-            margin-top: 28px;
-            font-size: 0.82rem;
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid #e8e4df;
+            font-size: 0.8rem;
             color: #9e9890;
-            line-height: 1.8;
+            line-height: 2;
+        }
+        .contact strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.78rem;
+            color: #b8b3ac;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 500;
         }
         .contact a {
             color: #4a4440;
@@ -182,13 +195,15 @@
             <button type="submit">Cari</button>
         </form>
 
-        <p class="footer">terkasih.com</p>
-
         <p class="contact">
+            <strong>Buat halaman kenangan</strong>
             Hubungi kami apabila Anda membutuhkan obituary untuk orang terkasih.<br>
-            <a href="mailto:halo@terkasih.com">Email: halo@terkasih.com</a><br>
-            <a href="https://wa.me/6281250205040" target="_blank" rel="noopener">WhatsApp: 081250205040</a>
+            <a href="mailto:halo@terkasih.com">halo@terkasih.com</a>
+            &nbsp;&middot;&nbsp;
+            <a href="https://wa.me/6281250205040" target="_blank" rel="noopener">WA 081250205040</a>
         </p>
     </div>
+
+    <p class="footer">terkasih.com</p>
 </body>
 </html>
