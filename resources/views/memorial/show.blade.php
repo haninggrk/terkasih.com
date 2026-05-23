@@ -102,7 +102,7 @@
 
         .arc-wrap {
             position: absolute;
-            top: 120px;
+            top: 100px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 4;
