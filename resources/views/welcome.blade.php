@@ -186,6 +186,7 @@
 
         <p class="contact">
             Hubungi kami apabila Anda membutuhkan obituary untuk orang terkasih.<br>
+            <a href="mailto:halo@terkasih.com">Email: halo@terkasih.com</a><br>
             <a href="https://wa.me/6281250205040" target="_blank" rel="noopener">WhatsApp: 081250205040</a>
         </p>
     </div>
