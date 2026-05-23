@@ -352,32 +352,9 @@
         </form>
     </div>
 
-    {{-- Contributions list --}}
-    @if ($supportContributions->isNotEmpty())
-    <div class="contributions-section" id="support-list">
-        <p class="contributions-title">Telah Disampaikan</p>
-
-        @foreach ($supportContributions as $sc)
-            <div class="contrib-card">
-                <p class="contrib-name">{{ $sc->name }}</p>
-                <p class="contrib-nominal">Rp{{ number_format($sc->nominal, 0, ',', '.') }}</p>
-                @if ($sc->proof_image_path)
-                    <a class="contrib-proof" href="{{ asset('storage/' . $sc->proof_image_path) }}" target="_blank" rel="noopener">Lihat bukti transfer →</a>
-                @endif
-            </div>
-        @endforeach
-
-        <div style="margin-top: 16px; text-align: center; font-size: 0.8rem; color: #9e9890;">
-            {{ $supportContributions->links() }}
-        </div>
-    </div>
-    @else
-    <div class="contributions-section" id="support-list">
-        <div class="empty-state">
-            Belum ada yang terkirim.<br>Kehadiran dan doa Anda sudah sangat berarti.
-        </div>
-    </div>
-    @endif
+    <footer style="text-align:center; padding: 28px 0 20px; margin-top: 12px;">
+        <a href="{{ route('home') }}" style="font-family:'DM Sans',sans-serif; font-size:0.76rem; color:#9e9890; letter-spacing:0.08em; text-decoration:none;">terkasih.com</a>
+    </footer>
 
 </div>
 </body>

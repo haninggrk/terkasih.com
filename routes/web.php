@@ -33,6 +33,10 @@ Route::get('/ericpramono-preview', function () {
     ]);
 })->name('memorial.copilot');
 
+Route::get('/eric-pramono', function () {
+    return redirect()->route('memorial.show', ['slug' => 'ericpramono'], 301);
+});
+
 Route::prefix('{slug}')
     ->whereIn('slug', ['ericpramono'])
     ->controller(MemorialPageController::class)

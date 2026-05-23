@@ -493,7 +493,9 @@
             font-size: 0.76rem;
             color: #9e9890;
             letter-spacing: 0.08em;
+            text-decoration: none;
         }
+        .footer-brand:hover { color: #4a4440; }
     </style>
 </head>
 <body>
@@ -744,7 +746,7 @@
         <p class="footer-headline">
             Please join us as we say goodbye to<br>a loving brother and friend.
         </p>
-        <p class="footer-brand">terkasih.com</p>
+        <a class="footer-brand" href="{{ route('home') }}">terkasih.com</a>
     </footer>
 
 </div>
