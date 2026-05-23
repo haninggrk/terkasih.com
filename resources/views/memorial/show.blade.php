@@ -800,7 +800,7 @@
     @endif
 
     {{-- ── Memories ── --}}
-    <div class="section reveal" id="memories">
+    <div class="section" id="memories">
         <p class="memories-title">Kenangan &amp; Doa</p>
 
         <div class="memories-ornament" aria-hidden="true">
