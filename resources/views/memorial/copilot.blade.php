@@ -391,9 +391,6 @@
             padding: 14px 16px;
             background: #ffffff;
             text-align: left;
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
         }
         .tribute-card.highlighted {
             border-color: #c0bbb4;
@@ -423,15 +420,15 @@
         }
         .tc-photos {
             display: flex;
-            flex-direction: column;
             gap: 6px;
-            flex-shrink: 0;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
         .tc-photos img {
-            width: 72px;
-            height: 72px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 7px;
             border: 1px solid #e8e4df;
         }
 
@@ -704,13 +701,11 @@
         <div class="tribute-cards">
             @forelse ($tributes as $tribute)
                 <article class="tribute-card {{ $tribute->is_highlighted ? 'highlighted' : '' }}">
-                    <div class="tc-body">
-                        <p class="tc-name">{{ $tribute->name }}</p>
-                        @if (!empty($tribute->relations))
-                            <p class="tc-relation">{{ implode(', ', $tribute->relations) }}</p>
-                        @endif
-                        <p class="tc-message">{{ $tribute->message }}</p>
-                    </div>
+                    <p class="tc-name">{{ $tribute->name }}</p>
+                    @if (!empty($tribute->relations))
+                        <p class="tc-relation">{{ implode(', ', $tribute->relations) }}</p>
+                    @endif
+                    <p class="tc-message">{{ $tribute->message }}</p>
                     @if (!empty($tribute->photos))
                         <div class="tc-photos">
                             @foreach ($tribute->photos as $photo)
