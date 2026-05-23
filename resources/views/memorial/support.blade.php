@@ -345,7 +345,7 @@
                 <input type="text" id="nominal" name="nominal" placeholder="Contoh: 500000" required value="{{ old('nominal') }}">
             </div>
             <div class="field">
-                <label for="proof_image">Bukti transfer <span style="color:#b8b3ac">(opsional)</span></label>
+                <label for="proof_image">Konfirmasi pengiriman <span style="color:#b8b3ac">(opsional)</span></label>
                 <input type="file" id="proof_image" name="proof_image" accept="image/jpeg,image/png,image/webp">
             </div>
             <button class="btn-submit" type="submit">Kirim Konfirmasi</button>
