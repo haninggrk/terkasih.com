@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>In Loving Memory - Eric Pramono</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,400&family=Noto+Serif+Display:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --muted: #6b6b6b;
+            --warm: #7a6a58;
+            --line: #e0ddd8;
+            --bg: #ffffff;
+            --panel: #fafaf9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: #f4f2ef;
+            color: var(--ink);
+            font-family: "Inria Serif", Georgia, serif;
+            -webkit-font-smoothing: antialiased;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .page {
+            max-width: 430px;
+            margin: 0 auto;
+            background: var(--bg);
+            position: relative;
+            min-height: 100vh;
+            box-shadow: 0 0 0 1px #e8e6e2, 0 20px 60px rgba(30, 28, 26, 0.10);
+        }
+
+        .flower-side {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.55;
+        }
+        .flower-side.left-top  { left: -42px; top: 16px;  width: 130px; }
+        .flower-side.left-mid  { left: -34px; top: 340px; width: 100px; }
+        .flower-side.right-top { right: -42px; top: 8px;  width: 130px; transform: scaleX(-1); }
+        .flower-side.right-mid { right: -34px; top: 320px; width: 100px; transform: scaleX(-1); }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 0 32px 40px;
+        }
+
+        .hero {
+            padding-top: 28px;
+            position: relative;
+        }
+
+        .arc-wrap {
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: center;
+        }
+        .arc-wrap svg {
+            width: 240px;
+            height: 64px;
+            overflow: visible;
+        }
+        .arc-text {
+            font-family: "Noto Serif Display", serif;
+            font-size: 20px;
+            font-weight: 300;
+            font-style: italic;
+            fill: #3a3530;
+            letter-spacing: 0.04em;
+        }
+
+        .portrait-wrap {
+            width: 160px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .portrait {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 999px;
+            border: 3px solid #fff;
+            box-shadow: 0 8px 24px rgba(40, 38, 36, 0.12);
+            position: relative;
+            z-index: 1;
+        }
+        .portrait-ring {
+            position: absolute;
+            inset: -5px;
+            border-radius: 999px;
+            border: 1.5px solid #c8c5c0;
+            z-index: 0;
+        }
+
+        h1 {
+            margin-top: 16px;
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: clamp(1.9rem, 7.5vw, 2.4rem);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            color: var(--ink);
+        }
+
+        .dates {
+            margin-top: 6px;
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        .verse-box {
+            margin-top: 16px;
+            padding: 14px 12px;
+            line-height: 1.7;
+        }
+        .verse-text {
+            font-style: italic;
+            font-size: 0.92rem;
+            color: #3a3a38;
+        }
+        .verse-ref {
+            margin-top: 5px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+        }
+
+        .description {
+            margin-top: 14px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .description strong,
+        .description .role {
+            display: block;
+            margin-top: 6px;
+            color: var(--ink);
+            font-weight: 400;
+        }
+
+        .divider {
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0.5;
+        }
+        .divider svg {
+            width: 110px;
+            height: 12px;
+        }
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+            max-width: 50px;
+        }
+
+        .section {
+            margin-top: 2px;
+        }
+
+        .label {
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+        .label:first-child { margin-top: 0; }
+
+        .value {
+            margin-top: 4px;
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.4;
+        }
+
+        .value-list {
+            list-style: none;
+            margin-top: 4px;
+            padding: 0;
+        }
+        .value-list li {
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .schedule {
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .support-heading {
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .bank-account {
+            margin-top: 10px;
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+            line-height: 1.4;
+        }
+
+        .support-note {
+            margin-top: 12px;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: var(--muted);
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 10px 28px;
+            border-radius: 999px;
+            border: 1.5px solid #c8c5c0;
+            background: #f5f0ea;
+            color: var(--ink);
+            text-decoration: none;
+            font-family: "Inria Serif", Georgia, serif;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .btn-outline:hover {
+            background: #ede8e2;
+            border-color: #b8b3ac;
+        }
+
+        .memories h2 {
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-top: 22px;
+        }
+
+        .memories .subtext {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        form { margin-top: 16px; display: grid; gap: 10px; }
+
+        input, textarea, select {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            padding: 11px 14px;
+            background: var(--panel);
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.88rem;
+            color: var(--ink);
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        input:focus, textarea:focus, select:focus { border-color: #b8b3ac; }
+
+        textarea { min-height: 100px; resize: vertical; font-family: "Inria Serif", Georgia, serif; }
+
+        .checklist {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .checklist label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid var(--line);
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--panel);
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.8rem;
+            color: var(--muted);
+            cursor: pointer;
+        }
+        .checklist input { width: auto; margin: 0; }
+
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 999px;
+            border: none;
+            background: var(--ink);
+            color: #fff;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: opacity 0.2s ease;
+        }
+        .btn-submit:hover { opacity: 0.85; }
+
+        .cards {
+            margin-top: 16px;
+            display: grid;
+            gap: 10px;
+        }
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 16px;
+            background: #fff;
+            text-align: left;
+        }
+        .card.highlight {
+            border-left: 3px solid var(--warm);
+            background: var(--panel);
+        }
+        .card-name { font-family: "Inria Serif", Georgia, serif; font-size: 1rem; font-weight: 600; }
+        .card-meta { font-family: "DM Sans", sans-serif; font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+        .card-body { margin-top: 8px; font-size: 0.92rem; line-height: 1.6; }
+        .card-photos { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .card-photos img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+        .badge {
+            display: inline-block;
+            margin-bottom: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: #ebebea;
+            color: #3a3a38;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .empty {
+            border: 1px dashed var(--line);
+            border-radius: 12px;
+            padding: 18px;
+            background: var(--panel);
+            color: var(--muted);
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.85rem;
+        }
+
+        .alert {
+            margin-top: 14px;
+            padding: 14px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.85rem;
+        }
+        .alert-error { border-left: 3px solid #c9a9a9; }
+
+        footer {
+            margin-top: 60px;
+            padding-bottom: 32px;
+        }
+        footer .farewell {
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        footer .domain {
+            margin-top: 12px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.78rem;
+            color: #999;
+            letter-spacing: 0.04em;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: "DM Sans", sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+            transition: color 0.2s ease;
+        }
+        .home-link:hover { color: var(--ink); }
+
+        .mt-4 { margin-top: 16px; }
+        .text-muted { color: var(--muted); }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <img src="{{ asset('images/flowers/Flower 1.png') }}" class="flower-side left-top" alt="" aria-hidden="true">
+    <img src="{{ asset('images/flowers/Flower 2.png') }}" class="flower-side left-mid" alt="" aria-hidden="true">
+    <img src="{{ asset('images/flowers/Flower 3.png') }}" class="flower-side right-top" alt="" aria-hidden="true">
+    <img src="{{ asset('images/flowers/Flower 4.png') }}" class="flower-side right-mid" alt="" aria-hidden="true">
+
+    <div class="content">
+        {{-- Hero --}}
+        <section class="hero">
+            <div class="arc-wrap">
+                <svg viewBox="0 0 260 64" overflow="visible">
+                    <defs>
+                        <path id="arc-path" d="M 18 54 A 116 116 0 0 1 242 54"/>
+                    </defs>
+                    <text class="arc-text">
+                        <textPath href="#arc-path" startOffset="50%" text-anchor="middle">In Loving Memory</textPath>
+                    </text>
+                </svg>
+            </div>
+
+            <div class="portrait-wrap">
+                <span class="portrait-ring" aria-hidden="true"></span>
+                <img class="portrait" src="{{ asset('images/eric.jpg') }}" alt="Eric Pramono">
+            </div>
+
+            <h1>Eric Pramono</h1>
+            <p class="dates">12 Januari 1978 - 23 Mei 2026</p>
+
+            <div class="verse-box">
+                <p class="verse-text">&ldquo;I have fought the good fight, I have finished the<br>race, I have kept the faith.&rdquo;</p>
+                <p class="verse-ref">(2 Timotius 4:7)</p>
+            </div>
+
+            <p class="description">
+                Telah berpulang ke rumah Bapa dengan tenang<br>
+                pada hari Sabtu, 23 Mei 2026 Pk. 07:28 WIB
+                <span class="role">Suami, Papa, Menantu, Kakak Tercinta</span>
+            </p>
+        </section>
+
+        {{-- Divider --}}
+        <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <svg viewBox="0 0 120 14" fill="none">
+                <path d="M10 7 Q 20 2 30 7 T 50 7 T 70 7 T 90 7 T 110 7" stroke="#b0aba4" stroke-width="1" fill="none" stroke-linecap="round"/>
+                <circle cx="60" cy="7" r="2.5" fill="#b0aba4" opacity="0.6"/>
+            </svg>
+            <span class="divider-line"></span>
+        </div>
+
+        {{-- Family --}}
+        <section class="section">
+            <p class="label">Istri tercinta:</p>
+            <p class="value">Sofia Linawaty</p>
+
+            <p class="label">Anak-anak tercinta:</p>
+            <ul class="value-list">
+                <li>Philip Sidney Pramono</li>
+                <li>Noah Griffith Pramono</li>
+                <li>Hugo Faith Pramono</li>
+                <li>Xavier Joy Pramono</li>
+            </ul>
+
+            <p class="label">Ayah mertua:</p>
+            <p class="value">Ong Tjing Fong (Edi Yongki)</p>
+        </section>
+
+        {{-- Divider --}}
+        <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <svg viewBox="0 0 120 14" fill="none">
+                <path d="M10 7 Q 20 2 30 7 T 50 7 T 70 7 T 90 7 T 110 7" stroke="#b0aba4" stroke-width="1" fill="none" stroke-linecap="round"/>
+                <circle cx="60" cy="7" r="2.5" fill="#b0aba4" opacity="0.6"/>
+            </svg>
+            <span class="divider-line"></span>
+        </div>
+
+        {{-- Funeral --}}
+        <section class="section">
+            <p class="label">Disemayamkan di</p>
+            <p class="value">Rumah Duka Adi Jasa</p>
+            <p class="value">Ruang VIP-A</p>
+
+            <p class="label">Ibadah Tutup Peti</p>
+            <p class="value schedule">Minggu, 24 Mei 2026 Pk. 15:00 WIB</p>
+
+            <p class="label">Ibadah Pemberangkatan</p>
+            <p class="value schedule">Rabu, 27 Mei 2026 Pk. 10:00 WIB</p>
+
+            <p class="label">Dimakamkan di</p>
+            <p class="value">Eka Praya</p>
+        </section>
+
+        {{-- Divider --}}
+        <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <svg viewBox="0 0 120 14" fill="none">
+                <path d="M10 7 Q 20 2 30 7 T 50 7 T 70 7 T 90 7 T 110 7" stroke="#b0aba4" stroke-width="1" fill="none" stroke-linecap="round"/>
+                <circle cx="60" cy="7" r="2.5" fill="#b0aba4" opacity="0.6"/>
+            </svg>
+            <span class="divider-line"></span>
+        </div>
+
+        {{-- Support --}}
+        <section class="section">
+            <p class="support-heading">
+                UNGKAPAN KASIH DAN BELASUNGKAWA<br>
+                DARI KELUARGA &amp; SAHABAT DAPAT DISAMPAIKAN<br>
+                MELALUI REKENING BERIKUT
+            </p>
+            <p class="bank-account">
+                BCA 8220364977<br>
+                a.n. Sofia Linawaty
+            </p>
+            <p class="support-note">
+                Bagi keluarga dan sahabat yang ingin menyampaikan<br>
+                tanda kasih kepada keluarga dapat klik tombol di<br>
+                bawah ini.
+            </p>
+            <a class="btn-outline" href="{{ route('memorial.support.page', ['slug' => 'eric-pramono']) }}">Kirim tanda kasih</a>
+        </section>
+
+        {{-- Memories --}}
+        <section class="section memories" id="memories">
+            <h2>KENANGAN &amp; DOA</h2>
+            <div class="divider" aria-hidden="true" style="margin: 10px auto;">
+                <span class="divider-line"></span>
+                <svg viewBox="0 0 120 14" fill="none">
+                    <path d="M10 7 Q 20 2 30 7 T 50 7 T 70 7 T 90 7 T 110 7" stroke="#b0aba4" stroke-width="1" fill="none" stroke-linecap="round"/>
+                    <circle cx="60" cy="7" r="2.5" fill="#b0aba4" opacity="0.6"/>
+                </svg>
+                <span class="divider-line"></span>
+            </div>
+            <p class="subtext">Bagikan kenangan, doa, dan pesan kasih untuk keluarga</p>
+
+            @if (session('status'))
+                <div class="alert">{{ session('status') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-error">
+                    <strong>Please check the form fields:</strong>
+                    <ul style="list-style:none;margin-top:6px;padding:0;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('memorial.tributes.store', ['slug' => 'eric-pramono']) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="text" name="name" placeholder="Nama" required>
+                <div class="checklist">
+                    @foreach (['Teman', 'Saudara', 'Rekan kerja', 'Tetangga', 'Lainnya'] as $relation)
+                        <label><input type="checkbox" name="relations[]" value="{{ $relation }}"> {{ $relation }}</label>
+                    @endforeach
+                </div>
+                <textarea name="message" placeholder="Pesan, doa, cerita, atau kenangan..." required></textarea>
+                <input type="file" name="photos[]" multiple accept="image/jpeg,image/png,image/webp">
+                <p class="text-muted" style="font-family:'DM Sans',sans-serif;font-size:0.75rem;">Maksimal 3 foto. Gambar akan dikompresi otomatis.</p>
+                <button class="btn-submit" type="submit">Kirim Kenangan</button>
+            </form>
+
+            <div class="cards">
+                @forelse ($tributes as $tribute)
+                    <article class="card {{ $tribute->is_highlighted ? 'highlight' : '' }}">
+                        @if ($tribute->is_highlighted)
+                            <span class="badge">Highlight Tribute</span>
+                        @endif
+                        <p class="card-name">{{ $tribute->name }}</p>
+                        <p class="card-meta">{{ implode(', ', $tribute->relations ?? []) }}</p>
+                        <p class="card-body">{{ $tribute->message }}</p>
+                        @if (! empty($tribute->photos))
+                            <div class="card-photos">
+                                @foreach ($tribute->photos as $photo)
+                                    <img src="{{ asset('storage/' . $photo) }}" alt="Tribute photo">
+                                @endforeach
+                            </div>
+                        @endif
+                    </article>
+                @empty
+                    <div class="empty">Belum ada kenangan tertulis. Cerita kecil Anda bisa sangat berarti bagi keluarga.</div>
+                @endforelse
+            </div>
+            <div class="mt-4">{{ $tributes->links() }}</div>
+        </section>
+
+        {{-- Footer --}}
+        <footer>
+            <p class="farewell">
+                PLEASE JOIN US AS WE SAY GOODBYE TO<br>
+                A LOVING BROTHER AND FRIEND.
+            </p>
+            <p class="domain">terkasih.com</p>
+            <a class="home-link" href="{{ route('home') }}">Home Terkasih.com</a>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
