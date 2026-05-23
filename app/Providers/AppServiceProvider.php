@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $livewireTmp = storage_path('app/livewire-tmp');
+        if (! is_dir($livewireTmp)) {
+            mkdir($livewireTmp, 0755, true);
+        }
     }
 }
