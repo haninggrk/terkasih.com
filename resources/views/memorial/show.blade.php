@@ -750,12 +750,11 @@
         <div class="section-block reveal" data-delay="160">
             <p class="s-label">Ibadah Penghiburan</p>
             <p class="s-value">Senin, 25 Mei 2026 Pk. 19:00 WIB</p>
+            <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
+
         </div>
 
-        <div class="section-block reveal" data-delay="240">
-            <p class="s-label">Ibadah Penghiburan</p>
-            <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
-        </div>
+     
 
         <div class="section-block reveal" data-delay="320">
             <p class="s-label">Ibadah Pemberangkatan</p>
