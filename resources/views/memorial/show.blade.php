@@ -830,6 +830,7 @@
             <button class="btn-fill" type="submit">Kirim Kenangan</button>
         </form>
 
+        <div id="tribute-list">
         <div class="tribute-cards">
             @forelse ($tributes as $tribute)
                 <article class="tribute-card {{ $tribute->is_highlighted ? 'highlighted' : '' }}">
@@ -859,6 +860,7 @@
         </div>
 
         <div class="pagination-wrap">{{ $tributes->links() }}</div>
+        </div>{{-- /#tribute-list --}}
     </div>
 
     {{-- ── Footer ── --}}
@@ -909,13 +911,6 @@
     var modal = document.getElementById('photo-modal');
     var pmImg = document.getElementById('pm-img');
     if (modal && pmImg) {
-        document.querySelectorAll('.tc-photo-img').forEach(function (img) {
-            img.addEventListener('click', function (e) {
-                e.stopPropagation();
-                pmImg.src = this.src;
-                modal.classList.add('open');
-            });
-        });
         modal.addEventListener('click', function () {
             modal.classList.remove('open');
             pmImg.src = '';
@@ -924,6 +919,56 @@
             if (e.key === 'Escape') { modal.classList.remove('open'); pmImg.src = ''; }
         });
     }
+
+    // AJAX pagination
+    function bindLightbox() {
+        if (!modal || !pmImg) { return; }
+        document.querySelectorAll('#tribute-list .tc-photo-img').forEach(function (img) {
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                pmImg.src = this.src;
+                modal.classList.add('open');
+            });
+        });
+    }
+
+    function bindPagination() {
+        document.querySelectorAll('#tribute-list a.pg-btn').forEach(function (a) {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                history.pushState(null, '', this.href);
+                loadTributes(this.href);
+            });
+        });
+    }
+
+    function loadTributes(url) {
+        var list = document.getElementById('tribute-list');
+        if (!list) { return; }
+        list.style.opacity = '0.4';
+        fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+            .then(function (res) { return res.text(); })
+            .then(function (html) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, 'text/html');
+                var incoming = doc.getElementById('tribute-list');
+                if (incoming) {
+                    list.innerHTML = incoming.innerHTML;
+                    list.style.opacity = '1';
+                    bindPagination();
+                    bindLightbox();
+                    list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            })
+            .catch(function () { list.style.opacity = '1'; });
+    }
+
+    window.addEventListener('popstate', function () {
+        loadTributes(location.href);
+    });
+
+    bindPagination();
+    bindLightbox();
 }());
 </script>
 </body>
