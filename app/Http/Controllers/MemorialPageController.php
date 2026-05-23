@@ -89,7 +89,7 @@ class MemorialPageController extends Controller
             'message' => $payload['message'],
             'photos' => $photos,
             'is_highlighted' => false,
-            'sort_order' => 0,
+            'sort_order' => 9999,
         ]);
 
         return redirect()

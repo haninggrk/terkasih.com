@@ -132,7 +132,7 @@
                         <tr class="{{ $tribute->is_hidden ? 'hidden-row' : '' }}">
                             <td>
                                 <input class="order-input" type="number" name="orders[{{ $tribute->id }}]"
-                                    value="{{ $tribute->sort_order === 9999 ? '' : $tribute->sort_order }}"
+                                    value="{{ in_array($tribute->sort_order, [0, 9999]) ? '' : $tribute->sort_order }}"
                                     placeholder="9999" min="1">
                             </td>
                             <td style="font-weight:500;">{{ $tribute->name }}</td>
@@ -148,7 +148,7 @@
                             <td>
                                 <form method="POST" action="{{ route('admin-tmp.tribute.toggle', $tribute->id) }}">
                                     @csrf
-                                    <button class="btn btn-sm {{ $tribute->is_hidden ? 'btn-green' : 'btn-red' }}" type="submit">
+                                    <button class="btn btn-sm {{ $tribute->is_hidden ? 'btn-green' : 'btn-red' }}" type="submit" formnovalidate>
                                         {{ $tribute->is_hidden ? 'Tampilkan' : 'Sembunyikan' }}
                                     </button>
                                 </form>
