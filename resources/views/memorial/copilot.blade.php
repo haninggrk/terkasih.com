@@ -840,10 +840,15 @@
         </form>
 
         <div class="tc-section-header">
-            <div class="memories-ornament" aria-hidden="true" style="margin-bottom:6px;">
+            <div class="divider" style="margin-bottom:16px;">
+                <span class="div-line"></span>
+                <span class="div-ornament">✦ ✦ ✦</span>
+                <span class="div-line"></span>
+            </div>
+            <p class="memories-title">Kenangan Terkasih</p>
+            <div class="memories-ornament" aria-hidden="true">
                 <img src="{{ asset('images/flowers/Flower 4.png') }}" alt="" style="width: 56px; opacity: 0.55;">
             </div>
-            <p class="tc-section-title">Kenangan Terkasih</p>
         </div>
 
         <div id="tribute-list">
