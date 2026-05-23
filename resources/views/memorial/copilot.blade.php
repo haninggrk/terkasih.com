@@ -121,8 +121,8 @@
         }
 
         .portrait {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #fff;
