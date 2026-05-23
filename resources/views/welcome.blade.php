@@ -198,7 +198,7 @@
         <p class="contact">
             <strong>Buat halaman kenangan</strong>
             Hubungi kami apabila Anda membutuhkan obituary untuk orang terkasih.<br>
-            <a href="mailto:halo@terkasih.com">halo@terkasih.com</a>
+            <a href="mailto:halo.terkasih@gmail.com">halo.terkasih@gmail.com</a>
         </p>
     </div>
 
