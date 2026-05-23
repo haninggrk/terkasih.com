@@ -45,10 +45,17 @@
         tr:last-child td { border-bottom: none; }
         tr.hidden-row { opacity: 0.45; }
         .table-wrap { overflow-x: auto; }
-        .msg-preview { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #4a4440; display: block; }
         .order-input { width: 64px; border: 1px solid #d4d0cb; border-radius: 6px; padding: 4px 7px; text-align: center; font-size: 0.85rem; }
-        .thumb { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; display: block; }
-        .thumb-placeholder { width: 36px; height: 36px; border-radius: 6px; background: #f2f0ec; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #c4bfb8; }
+        .thumb-row { display: flex; flex-wrap: wrap; gap: 4px; }
+        .thumb { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; display: block; cursor: zoom-in; }
+        .thumb-placeholder { width: 40px; height: 40px; border-radius: 6px; background: #f2f0ec; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #c4bfb8; }
+        .msg-cell { min-width: 220px; color: #4a4440; white-space: pre-wrap; word-break: break-word; font-size: 0.82rem; line-height: 1.45; }
+        /* Pagination */
+        .pg-admin { display: flex; gap: 6px; align-items: center; margin-top: 16px; flex-wrap: wrap; font-size: 0.82rem; }
+        .pg-admin a, .pg-admin span { padding: 5px 10px; border-radius: 7px; border: 1px solid #d4d0cb; color: #1a1614; text-decoration: none; }
+        .pg-admin span.active { background: #1a1614; color: #fff; border-color: #1a1614; }
+        .pg-admin span.disabled { color: #c4bfb8; pointer-events: none; }
+        .pg-admin a:hover { background: #f4f2ef; }
 
         /* Contribution cards */
         .contrib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
@@ -115,7 +122,7 @@
 
     {{-- ── Section: Kenangan Terkasih ── --}}
     <div class="panel">
-        <h2>Kenangan Terkasih ({{ $tributes->count() }} pesan)</h2>
+        <h2>Kenangan Terkasih ({{ $tributes->total() }} pesan)</h2>
 
         <form method="POST" action="{{ route('admin-tmp.sort-orders') }}">
             @csrf
@@ -142,15 +149,19 @@
                                     placeholder="9999" min="1">
                             </td>
                             <td>
-                                @if ($firstPhoto)
-                                    <img class="thumb" src="{{ asset('storage/' . $firstPhoto) }}" alt="">
+                                @if (!empty($tribute->photos))
+                                    <div class="thumb-row">
+                                        @foreach ($tribute->photos as $photo)
+                                            <img class="thumb" src="{{ asset('storage/' . $photo) }}" alt="" onclick="openProof(this.src)">
+                                        @endforeach
+                                    </div>
                                 @else
                                     <div class="thumb-placeholder">—</div>
                                 @endif
                             </td>
-                            <td style="font-weight:500;">{{ $tribute->name }}</td>
+                            <td style="font-weight:500; white-space:nowrap;">{{ $tribute->name }}</td>
                             <td>
-                                <span class="msg-preview" title="{{ $tribute->message }}">{{ $tribute->message }}</span>
+                                <span class="msg-cell">{{ $tribute->message }}</span>
                             </td>
                             <td style="color:#9e9890;">{{ implode(', ', $tribute->relations ?? []) }}</td>
                             <td>
@@ -180,6 +191,34 @@
             @endif
             </div>{{-- .table-wrap --}}
         </form>
+
+        {{-- Pagination --}}
+        @if ($tributes->hasPages())
+            <div class="pg-admin">
+                {{-- Previous --}}
+                @if ($tributes->onFirstPage())
+                    <span class="disabled">&lsaquo; Prev</span>
+                @else
+                    <a href="{{ $tributes->previousPageUrl() }}">&lsaquo; Prev</a>
+                @endif
+
+                {{-- Page numbers --}}
+                @foreach ($tributes->getUrlRange(1, $tributes->lastPage()) as $pg => $url)
+                    @if ($pg == $tributes->currentPage())
+                        <span class="active">{{ $pg }}</span>
+                    @else
+                        <a href="{{ $url }}">{{ $pg }}</a>
+                    @endif
+                @endforeach
+
+                {{-- Next --}}
+                @if ($tributes->hasMorePages())
+                    <a href="{{ $tributes->nextPageUrl() }}">Next &rsaquo;</a>
+                @else
+                    <span class="disabled">Next &rsaquo;</span>
+                @endif
+            </div>
+        @endif
     </div>
 
     {{-- ── Section: Bukti Sumbangan ── --}}

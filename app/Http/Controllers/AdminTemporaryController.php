@@ -70,7 +70,7 @@ class AdminTemporaryController extends Controller
             ->whereBelongsTo($page)
             ->orderBy('sort_order')
             ->orderBy('created_at')
-            ->get();
+            ->paginate(15);
         $contributions = SupportContribution::query()
             ->whereBelongsTo($page)
             ->latest()
