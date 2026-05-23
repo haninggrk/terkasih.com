@@ -44,8 +44,11 @@
         td { padding: 10px 8px; border-bottom: 1px solid #f2f0ec; vertical-align: middle; }
         tr:last-child td { border-bottom: none; }
         tr.hidden-row { opacity: 0.45; }
-        .msg-preview { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #4a4440; }
-        .order-input { width: 56px; border: 1px solid #d4d0cb; border-radius: 6px; padding: 4px 7px; text-align: center; font-size: 0.85rem; }
+        .table-wrap { overflow-x: auto; }
+        .msg-preview { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #4a4440; display: block; }
+        .order-input { width: 64px; border: 1px solid #d4d0cb; border-radius: 6px; padding: 4px 7px; text-align: center; font-size: 0.85rem; }
+        .thumb { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; display: block; }
+        .thumb-placeholder { width: 36px; height: 36px; border-radius: 6px; background: #f2f0ec; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #c4bfb8; }
 
         /* Contribution cards */
         .contrib-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
@@ -116,10 +119,12 @@
 
         <form method="POST" action="{{ route('admin-tmp.sort-orders') }}">
             @csrf
+            <div class="table-wrap">
             <table>
                 <thead>
                     <tr>
                         <th>Urutan</th>
+                        <th>Foto</th>
                         <th>Nama</th>
                         <th>Pesan</th>
                         <th>Relasi</th>
@@ -129,11 +134,19 @@
                 </thead>
                 <tbody>
                     @forelse ($tributes as $tribute)
+                        @php $firstPhoto = !empty($tribute->photos) ? $tribute->photos[0] : null; @endphp
                         <tr class="{{ $tribute->is_hidden ? 'hidden-row' : '' }}">
                             <td>
                                 <input class="order-input" type="number" name="orders[{{ $tribute->id }}]"
                                     value="{{ in_array($tribute->sort_order, [0, 9999]) ? '' : $tribute->sort_order }}"
                                     placeholder="9999" min="1">
+                            </td>
+                            <td>
+                                @if ($firstPhoto)
+                                    <img class="thumb" src="{{ asset('storage/' . $firstPhoto) }}" alt="">
+                                @else
+                                    <div class="thumb-placeholder">—</div>
+                                @endif
                             </td>
                             <td style="font-weight:500;">{{ $tribute->name }}</td>
                             <td>
@@ -155,7 +168,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr><td colspan="6" style="color:#9e9890; padding:20px 8px;">Belum ada kenangan.</td></tr>
+                        <tr><td colspan="7" style="color:#9e9890; padding:20px 8px;">Belum ada kenangan.</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -165,6 +178,7 @@
                     <button class="btn btn-dark" type="submit">Simpan Urutan</button>
                 </div>
             @endif
+            </div>{{-- .table-wrap --}}
         </form>
     </div>
 
