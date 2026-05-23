@@ -144,6 +144,20 @@
             letter-spacing: 0.02em;
         }
         .search-bar button:hover { background: #4a4440; }
+
+        /* ── Contact ── */
+        .contact {
+            margin-top: 28px;
+            font-size: 0.82rem;
+            color: #9e9890;
+            line-height: 1.8;
+        }
+        .contact a {
+            color: #4a4440;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -169,6 +183,11 @@
         </form>
 
         <p class="footer">terkasih.com</p>
+
+        <p class="contact">
+            Hubungi kami apabila Anda membutuhkan obituary untuk orang terkasih.<br>
+            <a href="https://wa.me/6281250205040" target="_blank" rel="noopener">WhatsApp: 081250205040</a>
+        </p>
     </div>
 </body>
 </html>
