@@ -508,6 +508,22 @@
             text-decoration: none;
         }
         .footer-brand:hover { color: #4a4440; }
+
+        /* ── Hero entrance ── */
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-florals { animation: fadeSlideUp 1.1s ease both; }
+        .hero-body    { animation: fadeSlideUp 1.1s 0.28s ease both; }
+
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.72s ease, transform 0.72s ease;
+        }
+        .reveal.visible { opacity: 1; transform: none; }
     </style>
 </head>
 <body>
@@ -557,7 +573,7 @@
 
             <p class="hero-description">
                 Telah berpulang ke rumah Bapa dengan tenang<br>
-                pada hari Sabtu, 23 Mei 2026 Pk. 07:28 WIB
+                pada hari Sabtu, 23 Mei 2026 Pk. 07:26 WIB
             </p>
 
             <p class="hero-subtitle">Suami, Papa, Menantu, Kakak Tercinta</p>
@@ -579,7 +595,7 @@
     @endif
 
     {{-- ── Divider ── --}}
-    <div class="divider">
+    <div class="divider reveal">
         <span class="div-line"></span>
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
@@ -588,12 +604,12 @@
     {{-- ── Family ── --}}
     <div class="section" id="family">
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="0">
             <p class="s-label">Istri tercinta:</p>
             <p class="s-value">Sofia Linawaty</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="80">
             <p class="s-label">Anak-anak tercinta:</p>
             <p class="s-value sm">Philip Sidney Pramono</p>
             <p class="s-value sm">Noah Griffith Pramono</p>
@@ -601,34 +617,34 @@
             <p class="s-value sm">Xavier Joy Pramono</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="160">
             <p class="s-label">Papa:</p>
             <p class="s-value sm">Pek Tji Kiong (†)</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="240">
             <p class="s-label">Papa mertua:</p>
             <p class="s-value sm">Ong Tjing Fong (Edi Yongki)</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="320">
             <p class="s-label">Mama:</p>
             <p class="s-value sm">Tienneke Hartanto (†)</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="400">
             <p class="s-label">Mama mertua:</p>
             <p class="s-value sm">Lie Kwik Djin (†)</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="480">
             <p class="s-value sm" style="font-style: italic;">Beserta segenap famili kami tercinta</p>
         </div>
 
     </div>
 
     {{-- ── Divider ── --}}
-    <div class="divider">
+    <div class="divider reveal">
         <span class="div-line"></span>
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
@@ -637,33 +653,33 @@
     {{-- ── Funeral ── --}}
     <div class="section" id="funeral">
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="0">
             <p class="s-label">Disemayamkan di</p>
             <p class="s-value">Rumah Duka Adi Jasa<br>Ruang VIP-A</p>
             <p class="s-address">Jl. Demak No. 90-92 Surabaya</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="80">
             <p class="s-label">Ibadah Tutup Peti</p>
             <p class="s-value">Minggu, 24 Mei 2026 Pk. 15:00 WIB</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="160">
             <p class="s-label">Ibadah Penghiburan</p>
             <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="240">
             <p class="s-label">Ibadah Pemberangkatan</p>
             <p class="s-value">Rabu, 27 Mei 2026 Pk. 09:30 WIB</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="320">
             <p class="s-label">Pemberangkatan</p>
             <p class="s-value">Rabu, 27 Mei 2026 Pk. 10:00 WIB</p>
         </div>
 
-        <div class="section-block">
+        <div class="section-block reveal" data-delay="400">
             <p class="s-label">Dimakamkan di</p>
             <p class="s-value">Makam Eka Praya</p>
         </div>
@@ -671,14 +687,14 @@
     </div>
 
     {{-- ── Divider ── --}}
-    <div class="divider">
+    <div class="divider reveal">
         <span class="div-line"></span>
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
     </div>
 
     {{-- ── Support ── --}}
-    <div class="section" id="support">
+    <div class="section reveal" id="support">
         <p class="support-note">
             Bagi keluarga dan sahabat yang ingin menyampaikan<br>
             tanda kasih kepada keluarga dapat klik tombol di bawah ini.
@@ -689,14 +705,14 @@
     </div>
 
     {{-- ── Divider ── --}}
-    <div class="divider">
+    <div class="divider reveal">
         <span class="div-line"></span>
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
     </div>
 
     {{-- ── Memories ── --}}
-    <div class="section" id="memories">
+    <div class="section reveal" id="memories">
         <p class="memories-title">Kenangan &amp; Doa</p>
 
         <div class="memories-ornament" aria-hidden="true">
@@ -754,7 +770,7 @@
     </div>
 
     {{-- ── Footer ── --}}
-    <footer class="footer">
+    <footer class="footer reveal">
         <p class="footer-headline">
             Please join us as we say goodbye to<br>a loving brother and friend.
         </p>
@@ -762,5 +778,25 @@
     </footer>
 
 </div>
+
+<script>
+(function () {
+    var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                var el = entry.target;
+                var delay = el.dataset.delay;
+                if (delay) { el.style.transitionDelay = delay + 'ms'; }
+                el.classList.add('visible');
+                obs.unobserve(el);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(function (el) {
+        obs.observe(el);
+    });
+}());
+</script>
 </body>
 </html>
