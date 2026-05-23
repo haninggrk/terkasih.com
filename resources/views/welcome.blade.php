@@ -199,8 +199,6 @@
             <strong>Buat halaman kenangan</strong>
             Hubungi kami apabila Anda membutuhkan obituary untuk orang terkasih.<br>
             <a href="mailto:halo@terkasih.com">halo@terkasih.com</a>
-            &nbsp;&middot;&nbsp;
-            <a href="https://wa.me/6281250205040" target="_blank" rel="noopener">WA 081250205040</a>
         </p>
     </div>
 

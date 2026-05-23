@@ -102,7 +102,7 @@ class AdminTemporaryController extends Controller
             Tribute::where('id', (int) $id)->update(['sort_order' => $val]);
         }
 
-        return back()->with('success', 'Urutan disimpan.');
+        return redirect()->route('admin-tmp.dashboard')->with('success', 'Urutan disimpan.');
     }
 
     public function toggleSupport(): RedirectResponse

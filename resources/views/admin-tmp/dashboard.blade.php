@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard · Terkasih</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, sans-serif; background: #f4f2ef; color: #1a1614; font-size: 0.9rem; }
@@ -170,12 +171,12 @@
                                 </span>
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('admin-tmp.tribute.toggle', $tribute->id) }}">
-                                    @csrf
-                                    <button class="btn btn-sm {{ $tribute->is_hidden ? 'btn-green' : 'btn-red' }}" type="submit" formnovalidate>
-                                        {{ $tribute->is_hidden ? 'Tampilkan' : 'Sembunyikan' }}
-                                    </button>
-                                </form>
+                                <button class="btn btn-sm {{ $tribute->is_hidden ? 'btn-green' : 'btn-red' }}"
+                                    onclick="toggleTribute({{ $tribute->id }}, this)"
+                                    data-url="{{ route('admin-tmp.tribute.toggle', $tribute->id) }}"
+                                    data-hidden="{{ $tribute->is_hidden ? '1' : '0' }}">
+                                    {{ $tribute->is_hidden ? 'Tampilkan' : 'Sembunyikan' }}
+                                </button>
                             </td>
                         </tr>
                     @empty
@@ -255,6 +256,16 @@
 </div>
 
 <script>
+const CSRF = document.querySelector('meta[name="csrf-token"]').content;
+
+function toggleTribute(id, btn) {
+    btn.disabled = true;
+    fetch(btn.dataset.url, {
+        method: 'POST',
+        headers: { 'X-CSRF-TOKEN': CSRF, 'Accept': 'application/json' },
+    }).then(() => location.reload());
+}
+
 function openProof(src) {
     document.getElementById('proof-img').src = src;
     document.getElementById('proof-modal').classList.add('open');
