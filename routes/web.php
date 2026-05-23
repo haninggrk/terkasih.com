@@ -38,7 +38,7 @@ Route::get('/ericpramono-preview', function () {
         ->orderByDesc('is_highlighted')
         ->orderBy('sort_order')
         ->latest()
-        ->paginate(3, ['*'], 'tributes_page')
+        ->paginate(10, ['*'], 'tributes_page')
         ->fragment('memories');
 
     $rsvps = Rsvp::query()

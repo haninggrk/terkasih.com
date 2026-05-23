@@ -397,6 +397,16 @@
         .btn-fill:hover { background: #1a1614; }
 
         /* ── Tribute cards ── */
+        .tc-section-header { text-align: center; margin: 22px 0 14px; }
+        .tc-section-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9e9890;
+            margin-top: 4px;
+        }
         .tribute-cards { display: grid; gap: 10px; margin-top: 4px; }
 
         .tribute-card {
@@ -813,7 +823,7 @@
             @csrf
             <input type="text" name="name" placeholder="Nama Anda" value="{{ old('name') }}" required>
             <div class="checklist">
-                @foreach (['Teman', 'Saudara', 'Rekan kerja', 'Tetangga', 'Lainnya'] as $relation)
+                @foreach (['Keluarga', 'Sahabat', 'Kolega', 'Lainnya'] as $relation)
                     <label>
                         <input type="checkbox" name="relations[]" value="{{ $relation }}"
                             {{ in_array($relation, old('relations', [])) ? 'checked' : '' }}
@@ -830,6 +840,13 @@
             <p class="form-hint">Foto opsional &middot; maks. 3 foto (JPG/PNG/WebP)</p>
             <button class="btn-fill" type="submit">Kirim Kenangan</button>
         </form>
+
+        <div class="tc-section-header">
+            <div class="memories-ornament" aria-hidden="true" style="margin-bottom:6px;">
+                <img src="{{ asset('images/flowers/Flower 4.png') }}" alt="" style="width: 56px; opacity: 0.55;">
+            </div>
+            <p class="tc-section-title">Kenangan Terkasih</p>
+        </div>
 
         <div id="tribute-list">
         <div class="tribute-cards">
