@@ -758,14 +758,14 @@
     </div>
 
     {{-- ── Divider ── --}}
-    {{-- ── Support (hidden — uncomment to show) ── --}}
-    {{-- 
     <div class="divider reveal">
         <span class="div-line"></span>
         <span class="div-ornament">✦ ✦ ✦</span>
         <span class="div-line"></span>
     </div>
 
+    {{-- ── Support (hidden — uncomment to show) ── --}}
+    {{-- 
     <div class="section reveal" id="support">
         <p class="support-note">
             Bagi keluarga dan sahabat yang ingin menyampaikan<br>
