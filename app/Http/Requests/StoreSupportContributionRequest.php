@@ -24,6 +24,7 @@ class StoreSupportContributionRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:120'],
+            'phone' => ['required', 'string', 'max:20'],
             'nominal' => ['required', 'integer', 'min:1'],
             'proof_image' => ['nullable', File::image()->max(4 * 1024)],
         ];
@@ -35,6 +36,7 @@ class StoreSupportContributionRequest extends FormRequest
 
         $this->merge([
             'name' => trim((string) $this->name),
+            'phone' => trim((string) $this->phone),
             'nominal' => $nominal === '' ? null : (int) $nominal,
         ]);
     }

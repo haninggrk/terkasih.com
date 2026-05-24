@@ -24,6 +24,7 @@ class StoreTributeRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:120'],
+            'phone' => ['nullable', 'string', 'max:20'],
             'relations' => ['required', 'array', 'min:1'],
             'relations.*' => ['required', 'string', 'in:Keluarga,Sahabat,Kolega,Lainnya'],
             'relation_other' => ['nullable', 'string', 'max:80'],

@@ -78,4 +78,7 @@ Route::prefix('{slug}')
         Route::post('/tributes', 'storeTribute')->name('memorial.tributes.store');
         Route::post('/support-contributions', 'storeSupport')->name('memorial.support.store');
         Route::post('/rsvps', 'storeRsvp')->name('memorial.rsvps.store');
+        Route::get('/keluarga', 'showTandaKasihLogin')->name('memorial.tanda-kasih.login');
+        Route::post('/keluarga/masuk', 'loginTandaKasih')->name('memorial.tanda-kasih.login.post');
+        Route::get('/keluarga/tanda-kasih', 'showTandaKasih')->name('memorial.tanda-kasih');
     });

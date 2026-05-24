@@ -13,6 +13,7 @@ class Tribute extends Model
     protected $fillable = [
         'memorial_page_id',
         'name',
+        'phone',
         'relations',
         'message',
         'photos',

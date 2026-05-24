@@ -829,6 +829,11 @@
             enctype="multipart/form-data">
             @csrf
             <input type="text" name="name" placeholder="Nama Anda" value="{{ old('name') }}" required>
+            <div style="display:grid; gap:4px;">
+                <input type="tel" name="phone" placeholder="Nomor HP (opsional)" value="{{ old('phone') }}"
+                    style="width:100%; padding:11px 14px; border:1px solid #d4d0cb; border-radius:8px; background:#fff; font-family:'DM Sans',sans-serif; font-size:0.87rem; color:#2a2420; outline:none; transition:border-color 0.18s;">
+                <p style="font-size:0.72rem; color:#b8b3ac; line-height:1.55;">Nomor tidak akan ditampilkan secara publik — hanya untuk keperluan keluarga jika ingin menghubungi.</p>
+            </div>
             <div class="checklist">
                 @foreach (['Keluarga', 'Sahabat', 'Kolega', 'Lainnya'] as $relation)
                     <label>

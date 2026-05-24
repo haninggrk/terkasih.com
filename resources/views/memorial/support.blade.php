@@ -341,6 +341,10 @@
                 <input type="text" id="name" name="name" placeholder="Nama lengkap" required value="{{ old('name') }}">
             </div>
             <div class="field">
+                <label for="phone">Nomor HP <span style="color:#9e9890;font-weight:400;">(wajib diisi)</span></label>
+                <input type="text" id="phone" name="phone" placeholder="Contoh: 08123456789" required value="{{ old('phone') }}">
+            </div>
+            <div class="field">
                 <label for="nominal">Nominal</label>
                 <input type="text" id="nominal" name="nominal" placeholder="Contoh: 500000" required value="{{ old('nominal') }}">
             </div>

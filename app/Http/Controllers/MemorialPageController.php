@@ -12,6 +12,7 @@ use App\Models\Tribute;
 use App\Support\ImageCompressor;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class MemorialPageController extends Controller
 {
@@ -85,6 +86,7 @@ class MemorialPageController extends Controller
         Tribute::query()->create([
             'memorial_page_id' => $memorialPage->id,
             'name' => $payload['name'],
+            'phone' => $payload['phone'] ?? null,
             'relations' => $relations,
             'message' => $payload['message'],
             'photos' => $photos,
@@ -117,6 +119,7 @@ class MemorialPageController extends Controller
         SupportContribution::query()->create([
             'memorial_page_id' => $memorialPage->id,
             'name' => $payload['name'],
+            'phone' => $payload['phone'],
             'nominal' => (int) $payload['nominal'],
             'proof_image_path' => $proofImagePath,
         ]);
@@ -144,5 +147,51 @@ class MemorialPageController extends Controller
             ->route('memorial.show', ['slug' => $slug])
             ->withFragment('rsvp')
             ->with('status', 'RSVP tersimpan. Terima kasih atas perhatian Anda.');
+    }
+
+    public function showTandaKasihLogin(string $slug): View|RedirectResponse
+    {
+        if (session('_family_auth_'.$slug) === true) {
+            return redirect()->route('memorial.tanda-kasih', ['slug' => $slug]);
+        }
+
+        return view('memorial.tanda-kasih-login', ['slug' => $slug]);
+    }
+
+    public function loginTandaKasih(Request $request, string $slug): RedirectResponse
+    {
+        $password = config('app.family_password', 'Pramono2026');
+
+        if ($request->input('password') === $password) {
+            $request->session()->put('_family_auth_'.$slug, true);
+
+            return redirect()->route('memorial.tanda-kasih', ['slug' => $slug]);
+        }
+
+        return back()->withErrors(['password' => 'Kata sandi tidak tepat.']);
+    }
+
+    public function showTandaKasih(string $slug): View|RedirectResponse
+    {
+        if (session('_family_auth_'.$slug) !== true) {
+            return redirect()->route('memorial.tanda-kasih.login', ['slug' => $slug]);
+        }
+
+        $memorialPage = MemorialPage::query()
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $contributions = SupportContribution::query()
+            ->whereBelongsTo($memorialPage)
+            ->latest()
+            ->get();
+
+        $total = $contributions->sum('nominal');
+
+        return view('memorial.tanda-kasih', [
+            'memorialPage' => $memorialPage,
+            'contributions' => $contributions,
+            'total' => $total,
+        ]);
     }
 }
