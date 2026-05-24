@@ -183,6 +183,35 @@
             padding: 0 4px;
         }
 
+        /* ── Share ── */
+        .share-row {
+            margin-top: 22px;
+            display: flex;
+            justify-content: center;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 20px;
+            border: 1px solid #c4bfb8;
+            border-radius: 999px;
+            background: transparent;
+            color: #6e6862;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .share-btn:hover, .share-btn.copied {
+            background: #1a1614;
+            color: #faf9f7;
+            border-color: #1a1614;
+        }
+        .share-btn svg { flex-shrink: 0; }
+
         .hero-subtitle {
             font-family: 'DM Sans', sans-serif;
             font-weight: 300;
@@ -671,6 +700,16 @@
                 Telah berpulang ke rumah Bapa dengan tenang<br>
                 pada hari Sabtu, 23 Mei 2026 Pk. 07:26 WIB
             </p>
+
+            <div class="share-row">
+                <button class="share-btn" id="share-btn" onclick="shareMemorial()" type="button" aria-label="Bagikan halaman ini">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    <span id="share-label">Bagikan</span>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1005,6 +1044,30 @@
     bindPagination();
     bindLightbox();
 }());
+
+// Share button
+function shareMemorial() {
+    var btn = document.getElementById('share-btn');
+    var label = document.getElementById('share-label');
+    var url = window.location.href.split('?')[0];
+    var title = 'In Loving Memory — {{ $memorialPage->person_name }}';
+    var text = 'Turut berdukacita atas kepergian {{ $memorialPage->person_name }}. Semoga keluarga diberi ketabahan dan penghiburan.';
+
+    if (navigator.share) {
+        navigator.share({ title: title, text: text, url: url }).catch(function () {});
+    } else {
+        navigator.clipboard.writeText(url).then(function () {
+            label.textContent = 'Tersalin!';
+            btn.classList.add('copied');
+            setTimeout(function () {
+                label.textContent = 'Bagikan';
+                btn.classList.remove('copied');
+            }, 2000);
+        }).catch(function () {
+            window.prompt('Salin tautan ini:', url);
+        });
+    }
+}
 </script>
 </body>
 </html>
