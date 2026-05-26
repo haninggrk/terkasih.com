@@ -19,7 +19,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cormorant+SC:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Inria+Serif:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Inria+Serif:ital,wght@0,300;1,300;1,400&family=Noto+Serif+Display:ital,wdth,wght@0,62.5,300;0,62.5,400;0,62.5,600;1,62.5,300&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -135,13 +135,13 @@
         }
 
         .person-name {
-            font-family: 'Cormorant SC', Georgia, serif;
-            font-weight: 600;
-            font-size: clamp(1.65rem, 7.2vw, 2.4rem);
-            line-height: 1.08;
-            letter-spacing: 0.04em;
+            font-family: 'Noto Serif Display', serif;
+            font-stretch: extra-condensed;
+            font-weight: 400;
+            font-size: clamp(2rem, 9vw, 3.2rem);
+            line-height: 1.05;
+            letter-spacing: -0.01em;
             color: #ffffff;
-            text-transform: uppercase;
         }
 
         .age-row {
@@ -253,7 +253,7 @@
         .section-block { margin-bottom: 24px; }
 
         .s-heading {
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Noto Serif Display', serif;
             font-weight: 400;
             font-size: 0.78rem;
             letter-spacing: 0.2em;
@@ -273,7 +273,7 @@
         }
 
         .s-value {
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Noto Serif Display', serif;
             font-weight: 500;
             font-size: clamp(1.1rem, 5vw, 1.5rem);
             color: #ffffff;
@@ -331,7 +331,7 @@
         .memories-section { padding: 0 32px; text-align: center; }
 
         .memories-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Noto Serif Display', serif;
             font-weight: 400;
             font-size: 1.45rem;
             letter-spacing: 0.08em;
