@@ -703,15 +703,6 @@
                 pada hari Sabtu, 23 Mei 2026 Pk. 07:26 WIB
             </p>
 
-            <div class="share-row">
-                <button class="share-btn" id="share-btn" onclick="shareMemorial()" type="button" aria-label="Bagikan halaman ini">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                    </svg>
-                    <span id="share-label">Bagikan</span>
-                </button>
-            </div>
         </div>
     </section>
 
@@ -732,12 +723,12 @@
         <p class="s-label" style="margin-bottom: 16px;">Kami yang mengasihi</p>
 
         <div class="section-block reveal" data-delay="0">
-            <p class="s-label">Istri tercinta:</p>
+            <p class="s-label">Istri:</p>
             <p class="s-value">Sofia Linawaty</p>
         </div>
 
         <div class="section-block reveal" data-delay="80">
-            <p class="s-label">Anak-anak tercinta:</p>
+            <p class="s-label">Anak-anak:</p>
             <p class="s-value sm">Philip Sidney Pramono</p>
             <p class="s-value sm">Noah Griffith Pramono</p>
             <p class="s-value sm">Hugo Faith Pramono</p>
@@ -771,7 +762,7 @@
         </div>
 
         <div class="section-block reveal" data-delay="480">
-            <p class="s-value sm" style="font-style: italic;">Beserta segenap famili kami tercinta</p>
+            <p class="s-value sm" style="font-style: italic;">Beserta segenap keluarga terkasih</p>
         </div>
 
     </div>
@@ -819,6 +810,16 @@
         <div class="section-block reveal" data-delay="480">
             <p class="s-label">Dimakamkan di</p>
             <p class="s-value">Makam Eka Praya</p>
+
+            <div class="share-row">
+                <button class="share-btn" id="share-btn" onclick="shareMemorial()" type="button" aria-label="Bagikan halaman ini">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    <span id="share-label">Bagikan</span>
+                </button>
+            </div>
         </div>
 
     </div>
@@ -1059,8 +1060,14 @@ function shareMemorial() {
     var label = document.getElementById('share-label');
     var url = window.location.href.split('?')[0];
     var title = 'In Loving Memory — {{ $memorialPage->person_name }}';
-    var text = 'Turut berdukacita atas kepergian {{ $memorialPage->person_name }}. Semoga keluarga diberi ketabahan dan penghiburan.';
+    var text = `Rest in peace sahabat dan saudara terkasih,
 
+    ${memorialPage.person_name} 🧡
+
+    Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
+    ${window.location.href}
+
+    Semoga keluarga diberi ketabahan dan kekuatan.`;
     if (navigator.share) {
         navigator.share({ title: title, text: text, url: url }).catch(function () {});
     } else {
