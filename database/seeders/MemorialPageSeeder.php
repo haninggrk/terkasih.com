@@ -28,14 +28,14 @@ class MemorialPageSeeder extends Seeder
                 'children' => ['Philip Sidney Pramono', 'Noah Griffith Pramono', 'Hugo Faith Pramono', 'Xavier Joy Pramono'],
                 'father_in_law' => 'Ong Tjing Fong (Edi Yongki)',
                 'mother_in_law' => null,
-                'funeral_resting_place' => 'Rumah Duka Adi Jasa' . "\n" . 'Ruang VIP-A',
+                'funeral_resting_place' => 'Rumah Duka Adi Jasa'."\n".'Ruang VIP-A',
                 'burial_information' => 'Eka Praya',
                 'schedule_closing_coffin' => 'Minggu, 24 Mei 2026 Pk. 15:00 WIB',
                 'schedule_comfort_service' => '',
                 'schedule_departure_service' => 'Rabu, 27 Mei 2026 Pk. 10:00 WIB',
                 'support_intro_id' => 'UNGKAPAN KASIH DAN BELASUNGKAWA DARI KELUARGA & SAHABAT DAPAT DISAMPAIKAN MELALUI REKENING BERIKUT',
                 'support_intro_en' => 'Expressions of love and condolences from family and friends may be shared through the following account.',
-                'support_account_placeholder' => 'BCA 8220364977' . "\n" . 'a.n. Sofia Linawaty',
+                'support_account_placeholder' => 'BCA 8220364977'."\n".'a.n. Sofia Linawaty',
                 'is_active' => true,
             ]
         );

@@ -38,7 +38,13 @@ class MemorialPageController extends Controller
             ->limit(8)
             ->get();
 
-        return view('memorial.show', [
+        $viewMap = [
+            'dini-carolina' => 'memorial.dini-carolina',
+        ];
+
+        $view = $viewMap[$slug] ?? 'memorial.show';
+
+        return view($view, [
             'memorialPage' => $memorialPage,
             'tributes' => $tributes,
             'rsvps' => $rsvps,
@@ -58,7 +64,12 @@ class MemorialPageController extends Controller
             ->paginate(8, ['*'], 'supports_page')
             ->fragment('support-list');
 
-        return view('memorial.support', [
+        $supportViewMap = [
+            'dini-carolina' => 'memorial.dini-carolina-support',
+        ];
+        $supportView = $supportViewMap[$slug] ?? 'memorial.support';
+
+        return view($supportView, [
             'memorialPage' => $memorialPage,
             'supportContributions' => $supportContributions,
         ]);
