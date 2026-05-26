@@ -764,6 +764,12 @@
             <p class="s-value sm">Lie Kwik Djin (†)</p>
         </div>
 
+
+        <div class="section-block reveal" data-delay="400">
+            <p class="s-label">Saudara:</p>
+            <p class="s-value sm">Edward Pramono</p>
+        </div>
+
         <div class="section-block reveal" data-delay="480">
             <p class="s-value sm" style="font-style: italic;">Beserta segenap famili kami tercinta</p>
         </div>
