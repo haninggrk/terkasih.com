@@ -1051,7 +1051,14 @@ function shareMemorial() {
     var label = document.getElementById('share-label');
     var url = window.location.href.split('?')[0];
     var title = 'In Loving Memory — {{ $memorialPage->person_name }}';
-    var text = 'Turut berdukacita atas kepergian {{ $memorialPage->person_name }}. Semoga keluarga diberi ketabahan dan penghiburan.';
+    var text = `Rest in peace sahabat dan saudara terkasih,
+
+    {{ $memorialPage->person_name }} 🧡
+
+    Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
+    ${window.location.href}
+
+    Semoga keluarga diberi ketabahan dan kekuatan.`;
 
     if (navigator.share) {
         navigator.share({ title: title, text: text, url: url }).catch(function () {});
