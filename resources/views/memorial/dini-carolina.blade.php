@@ -135,8 +135,7 @@
         }
 
         .person-name {
-            font-family: 'Noto Serif Display', serif;
-            font-stretch: extra-condensed;
+            font-family: Tahoma, sans-serif;
             font-weight: 400;
             font-size: clamp(2rem, 9vw, 3.2rem);
             line-height: 1.05;
@@ -172,7 +171,7 @@
         }
 
         .verse-text {
-            font-family: 'Inria Serif', Georgia, serif;
+            font-family: Tahoma, sans-serif;
             font-style: italic;
             font-weight: 300;
             font-size: 0.93rem;
