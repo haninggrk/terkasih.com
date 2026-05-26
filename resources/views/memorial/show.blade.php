@@ -1062,12 +1062,12 @@ function shareMemorial() {
     var title = 'In Loving Memory — {{ $memorialPage->person_name }}';
     var text = `Rest in peace sahabat dan saudara terkasih,
 
-    ${memorialPage.person_name} 🧡
+${memorialPage.person_name} 🧡
 
-    Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
-    ${window.location.href}
+Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
+${window.location.href}
 
-    Semoga keluarga diberi ketabahan dan kekuatan.`;
+Semoga keluarga diberi ketabahan dan kekuatan.`;
     if (navigator.share) {
         navigator.share({ title: title, text: text, url: url }).catch(function () {});
     } else {

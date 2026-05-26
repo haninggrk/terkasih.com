@@ -1053,15 +1053,15 @@ function shareMemorial() {
     var title = 'In Loving Memory — {{ $memorialPage->person_name }}';
     var text = `Rest in peace sahabat dan saudara terkasih,
 
-    {{ $memorialPage->person_name }} 🧡
+{{ $memorialPage->person_name }} 🧡
 
-    Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
-    ${window.location.href}
+Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
+${url}
 
-    Semoga keluarga diberi ketabahan dan kekuatan.`;
+Semoga keluarga diberi ketabahan dan kekuatan.`;
 
     if (navigator.share) {
-        navigator.share({ title: title, text: text, url: url }).catch(function () {});
+        navigator.share({ title: title, text: text }).catch(function () {});
     } else {
         navigator.clipboard.writeText(url).then(function () {
             label.textContent = 'Tersalin!';
