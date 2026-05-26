@@ -252,7 +252,7 @@
         .section-block { margin-bottom: 24px; }
 
         .s-heading {
-            font-family: 'Noto Serif Display', serif;
+            font-family: Tahoma, sans-serif;
             font-weight: 400;
             font-size: 0.78rem;
             letter-spacing: 0.2em;
@@ -272,7 +272,7 @@
         }
 
         .s-value {
-            font-family: 'Noto Serif Display', serif;
+            font-family: Tahoma, sans-serif;
             font-weight: 500;
             font-size: clamp(1.1rem, 5vw, 1.5rem);
             color: #ffffff;
@@ -330,7 +330,7 @@
         .memories-section { padding: 0 32px; text-align: center; }
 
         .memories-title {
-            font-family: 'Noto Serif Display', serif;
+            font-family: Tahoma, sans-serif;
             font-weight: 400;
             font-size: 1.45rem;
             letter-spacing: 0.08em;
