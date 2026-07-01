@@ -1035,47 +1035,43 @@
     <script>
     (function() {
         var audio = document.getElementById('memorial-audio');
-        var btn = document.getElementById('music-toggle');
         var icon = document.getElementById('music-icon');
         audio.volume = 0.5;
         var started = false;
+        var muted = false;
 
-        function playAudio() {
-            if (started) return;
-            started = true;
-            audio.play().then(function() {
-                icon.innerHTML = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
-            }).catch(function() {});
-            document.removeEventListener('click', playAudio);
-            document.removeEventListener('scroll', playAudio);
-            document.removeEventListener('keydown', playAudio);
-            document.removeEventListener('touchstart', playAudio);
+        var speakerOn = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
+        var speakerOff = '<path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+
+        function setIcon() {
+            icon.innerHTML = started ? (muted ? speakerOff : speakerOn) : speakerOn;
         }
 
-        // Try autoplay
+        function onFirstInteraction() {
+            if (started) return;
+            started = true;
+            audio.play().then(setIcon).catch(function() {});
+            document.removeEventListener('click', onFirstInteraction);
+            document.removeEventListener('scroll', onFirstInteraction);
+            document.removeEventListener('keydown', onFirstInteraction);
+            document.removeEventListener('touchstart', onFirstInteraction);
+        }
+
         audio.play().then(function() {
             started = true;
-            document.removeEventListener('click', playAudio);
-            document.removeEventListener('scroll', playAudio);
-            document.removeEventListener('keydown', playAudio);
-            document.removeEventListener('touchstart', playAudio);
+            setIcon();
         }).catch(function() {
-            // Fallback: wait for user interaction
-            document.addEventListener('click', playAudio);
-            document.addEventListener('scroll', playAudio);
-            document.addEventListener('keydown', playAudio);
-            document.addEventListener('touchstart', playAudio);
+            document.addEventListener('click', onFirstInteraction);
+            document.addEventListener('scroll', onFirstInteraction);
+            document.addEventListener('keydown', onFirstInteraction);
+            document.addEventListener('touchstart', onFirstInteraction);
         });
 
         window.toggleMute = function() {
-            if (audio.volume > 0) {
-                audio.dataset.prevVolume = audio.volume;
-                audio.volume = 0;
-                icon.innerHTML = '<path d="M3 3l18 18"/><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
-            } else {
-                audio.volume = audio.dataset.prevVolume || 0.5;
-                icon.innerHTML = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
-            }
+            if (!started) { onFirstInteraction(); return; }
+            muted = !muted;
+            audio.volume = muted ? 0 : 0.5;
+            setIcon();
         };
     })();
     </script>
