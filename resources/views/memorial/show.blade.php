@@ -854,7 +854,7 @@
                 <p class="s-label">Disemayamkan di</p>
                 <p class="s-value">{{ $parts[0] }}</p>
                 @if (isset($parts[1]))
-                    <p class="s-address" style="margin-top: 8px;">{{ $parts[1] }}</p>
+                    <p class="s-address" style="margin-top: 8px; color: #b84a4a;">{{ $parts[1] }}</p>
                 @endif
             </div>
         @endif
