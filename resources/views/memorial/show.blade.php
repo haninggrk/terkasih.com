@@ -1040,6 +1040,25 @@
     var btn = document.getElementById('play-music-btn');
     var icon = document.getElementById('play-icon');
     var label = document.getElementById('play-label');
+    var started = false;
+
+    function startMusic() {
+        if (started) return;
+        started = true;
+        audio.play().catch(function(){});
+        icon.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>';
+        label.textContent = 'Jeda musik';
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('scroll', startMusic);
+        document.removeEventListener('keydown', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+    }
+
+    document.addEventListener('click', startMusic);
+    document.addEventListener('scroll', startMusic);
+    document.addEventListener('keydown', startMusic);
+    document.addEventListener('touchstart', startMusic);
+
     function toggleMusic() {
         if (audio.paused) {
             audio.play();
