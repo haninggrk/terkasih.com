@@ -11,13 +11,13 @@
     <meta property="og:url"         content="{{ url()->current() }}">
     <meta property="og:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta property="og:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta property="og:image"       content="{{ url('images/og-default.jpg') }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image"       content="{{ url('images/eric-og.jpg') }}">
+    <meta property="og:image:width" content="1091">
+    <meta property="og:image:height" content="1280">
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta name="twitter:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta name="twitter:image"       content="{{ url('images/og-default.jpg') }}">
+    <meta name="twitter:image"       content="{{ url('images/eric-og.jpg') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,20 +129,6 @@
             object-fit: cover;
             border: 3px solid #fff;
             display: block;
-        }
-
-        .portrait-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #e8e4df;
-            border: 3px solid #fff;
-        }
-        .portrait-placeholder span {
-            font-family: 'Noto Serif Display', serif;
-            font-size: 4rem;
-            font-weight: 300;
-            color: #9e9890;
         }
 
         /* ── Hero body ── */
@@ -698,61 +684,24 @@
             </div>
 
             <div class="portrait-ring">
-                @php
-                    $photoUrl = null;
-                    $photoPath = $memorialPage->photo_path ?? null;
-                    if ($photoPath && file_exists(public_path('storage/' . $photoPath))) {
-                        $photoUrl = asset('storage/' . $photoPath);
-                    } else {
-                        $knownPhotos = [
-                            'ericpramono' => 'images/eric.jpg',
-                            'dini-carolina' => 'images/dini.png',
-                        ];
-                        $legacyPath = $knownPhotos[$memorialPage->slug] ?? null;
-                        if ($legacyPath && file_exists(public_path($legacyPath))) {
-                            $photoUrl = asset($legacyPath);
-                        } elseif (file_exists(public_path('images/' . $memorialPage->slug . '.jpg'))) {
-                            $photoUrl = asset('images/' . $memorialPage->slug . '.jpg');
-                        } elseif (file_exists(public_path('images/' . $memorialPage->slug . '.png'))) {
-                            $photoUrl = asset('images/' . $memorialPage->slug . '.png');
-                        }
-                    }
-                @endphp
-                @if ($photoUrl)
-                    <img class="portrait" src="{{ $photoUrl }}" alt="{{ $memorialPage->person_name }}">
-                @else
-                    <div class="portrait portrait-placeholder">
-                        <span>{{ strtoupper(substr($memorialPage->person_name, 0, 1)) }}</span>
-                    </div>
-                @endif
+                <img class="portrait" src="{{ asset('images/eric.jpg') }}" alt="Eric Pramono">
             </div>
         </div>
 
         <div class="hero-body">
-            <h1 class="person-name">{{ $memorialPage->person_name }}</h1>
+            <h1 class="person-name">Eric Pramono</h1>
 
-            @php
-                $birth = $memorialPage->birth_date ? \Carbon\Carbon::parse($memorialPage->birth_date)->locale('id')->isoFormat('D MMMM YYYY') : null;
-                $death = $memorialPage->death_date ? \Carbon\Carbon::parse($memorialPage->death_date)->locale('id')->isoFormat('D MMMM YYYY') : null;
-            @endphp
-            @if ($birth || $death)
-                <p class="date-range">{{ $birth ?? '…' }} &nbsp;–&nbsp; {{ $death ?? '…' }}</p>
-            @endif
+            <p class="date-range">12 Januari 1978 &nbsp;–&nbsp; 23 Mei 2026</p>
 
-            @if ($memorialPage->verse_text_id || $memorialPage->verse_reference)
-                <div class="verse-block">
-                    @if ($memorialPage->verse_text_id)
-                        <p class="verse-text">&ldquo;{{ $memorialPage->verse_text_id }}&rdquo;</p>
-                    @endif
-                    @if ($memorialPage->verse_reference)
-                        <p class="verse-ref">({{ $memorialPage->verse_reference }})</p>
-                    @endif
-                </div>
-            @endif
+            <div class="verse-block">
+                <p class="verse-text">&ldquo;I have fought the good fight, I have finished the race, I have kept the faith.&rdquo;</p>
+                <p class="verse-ref">(2 Timothy 4:7)</p>
+            </div>
 
-            @if ($memorialPage->description_id)
-                <p class="hero-description">{!! nl2br(e($memorialPage->description_id)) !!}</p>
-            @endif
+            <p class="hero-description">
+                Telah berpulang ke rumah Bapa dengan tenang<br>
+                pada hari Sabtu, 23 Mei 2026 Pk. 07:26 WIB
+            </p>
 
         </div>
     </section>
@@ -773,35 +722,44 @@
 
         <p class="s-label" style="margin-bottom: 16px;">Kami yang mengasihi</p>
 
-        @if ($memorialPage->wife_name)
-            <div class="section-block reveal" data-delay="0">
-                <p class="s-label">Istri:</p>
-                <p class="s-value">{{ $memorialPage->wife_name }}</p>
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="0">
+            <p class="s-label">Istri:</p>
+            <p class="s-value">Sofia Linawaty</p>
+        </div>
 
-        @if ($memorialPage->children && count($memorialPage->children) > 0)
-            <div class="section-block reveal" data-delay="80">
-                <p class="s-label">Anak-anak:</p>
-                @foreach ($memorialPage->children as $child)
-                    <p class="s-value sm">{{ $child }}</p>
-                @endforeach
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="80">
+            <p class="s-label">Anak-anak:</p>
+            <p class="s-value sm">Philip Sidney Pramono</p>
+            <p class="s-value sm">Noah Griffith Pramono</p>
+            <p class="s-value sm">Hugo Faith Pramono</p>
+            <p class="s-value sm">Xavier Joy Pramono</p>
+        </div>
 
-        @if ($memorialPage->father_in_law)
-            <div class="section-block reveal" data-delay="160">
-                <p class="s-label">Papa mertua:</p>
-                <p class="s-value sm">{{ $memorialPage->father_in_law }}</p>
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="160">
+            <p class="s-label">Papa:</p>
+            <p class="s-value sm">Pek Tji Kiong (†)</p>
+        </div>
 
-        @if ($memorialPage->mother_in_law)
-            <div class="section-block reveal" data-delay="240">
-                <p class="s-label">Mama mertua:</p>
-                <p class="s-value sm">{{ $memorialPage->mother_in_law }}</p>
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="240">
+            <p class="s-label">Papa mertua:</p>
+            <p class="s-value sm">Ong Tjing Fong (Edi Yongki)</p>
+        </div>
+
+        <div class="section-block reveal" data-delay="320">
+            <p class="s-label">Mama:</p>
+            <p class="s-value sm">Tienneke Hartanto (†)</p>
+        </div>
+
+        <div class="section-block reveal" data-delay="400">
+            <p class="s-label">Mama mertua:</p>
+            <p class="s-value sm">Lie Kwik Djin (†)</p>
+        </div>
+
+
+        <div class="section-block reveal" data-delay="400">
+            <p class="s-label">Saudara:</p>
+            <p class="s-value sm">Edward Pramono</p>
+        </div>
 
         <div class="section-block reveal" data-delay="480">
             <p class="s-value sm" style="font-style: italic;">Beserta segenap keluarga terkasih</p>
@@ -819,53 +777,49 @@
     {{-- ── Funeral ── --}}
     <div class="section" id="funeral">
 
-        @if ($memorialPage->funeral_resting_place && $memorialPage->funeral_resting_place !== '—')
-            <div class="section-block reveal" data-delay="0">
-                <p class="s-label">Disemayamkan di</p>
-                <p class="s-value">{{ $memorialPage->funeral_resting_place }}</p>
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="0">
+            <p class="s-label">Disemayamkan di</p>
+            <p class="s-value">Rumah Duka Adi Jasa<br>Ruang VIP-A</p>
+            <p class="s-address">Jl. Demak No. 90-92 Surabaya</p>
+        </div>
 
-        @if ($memorialPage->schedule_closing_coffin && $memorialPage->schedule_closing_coffin !== '—')
-            <div class="section-block reveal" data-delay="80">
-                <p class="s-label">Ibadah Tutup Peti</p>
-                <p class="s-value">{{ $memorialPage->schedule_closing_coffin }}</p>
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="80">
+            <p class="s-label">Ibadah Tutup Peti</p>
+            <p class="s-value">Minggu, 24 Mei 2026 Pk. 15:00 WIB</p>
+        </div>
 
-        @if ($memorialPage->schedule_comfort_service && $memorialPage->schedule_comfort_service !== '—')
-            <div class="section-block reveal" data-delay="160">
-                <p class="s-label">Ibadah Penghiburan</p>
-                @foreach (explode("\n", $memorialPage->schedule_comfort_service) as $line)
-                    <p class="s-value">{{ trim($line) }}</p>
-                @endforeach
-            </div>
-        @endif
+        <div class="section-block reveal" data-delay="160">
+            <p class="s-label">Ibadah Penghiburan</p>
+            <p class="s-value">Senin, 25 Mei 2026 Pk. 19:00 WIB</p>
+            <p class="s-value">Selasa, 26 Mei 2026 Pk. 19:00 WIB</p>
 
-        @if ($memorialPage->schedule_departure_service && $memorialPage->schedule_departure_service !== '—')
-            <div class="section-block reveal" data-delay="320">
-                <p class="s-label">Ibadah Pemberangkatan</p>
-                @foreach (explode("\n", $memorialPage->schedule_departure_service) as $line)
-                    <p class="s-value">{{ trim($line) }}</p>
-                @endforeach
-            </div>
-        @endif
+        </div>
 
-        @if ($memorialPage->burial_information && $memorialPage->burial_information !== '—')
-            <div class="section-block reveal" data-delay="480">
-                <p class="s-label">Dimakamkan di</p>
-                <p class="s-value">{{ $memorialPage->burial_information }}</p>
-            </div>
-        @endif
+     
 
-        <div class="share-row">
-            <button class="share-btn" id="share-btn" onclick="shareMemorial()" type="button" aria-label="Bagikan halaman ini">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                </svg>
-                <span id="share-label">Bagikan</span>
-            </button>
+        <div class="section-block reveal" data-delay="320">
+            <p class="s-label">Ibadah Pemberangkatan</p>
+            <p class="s-value">Rabu, 27 Mei 2026 Pk. 09:30 WIB</p>
+        </div>
+
+        <div class="section-block reveal" data-delay="400">
+            <p class="s-label">Pemberangkatan</p>
+            <p class="s-value">Rabu, 27 Mei 2026 Pk. 10:00 WIB</p>
+        </div>
+
+        <div class="section-block reveal" data-delay="480">
+            <p class="s-label">Dimakamkan di</p>
+            <p class="s-value">Makam Eka Praya</p>
+
+            <div class="share-row">
+                <button class="share-btn" id="share-btn" onclick="shareMemorial()" type="button" aria-label="Bagikan halaman ini">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                    <span id="share-label">Bagikan</span>
+                </button>
+            </div>
         </div>
 
     </div>
@@ -970,138 +924,11 @@
                             @endforeach
                         </div>
                     @endif
-                    <div class="tc-body">
-                        <p class="tc-message">{{ $tribute->message }}</p>
-                        <div class="tc-footer">
-                            <p class="tc-name">{{ $tribute->name }}</p>
-                            @if (!empty($tribute->relations))
-                                <p class="tc-relation">{{ implode(', ', $tribute->relations) }}</p>
-                            @endif
-                        </div>
-                    </div>
-                </article>
-            @empty
-                <div class="empty-state">
-                    Belum ada kenangan tertulis.<br>
-                    Cerita kecil Anda bisa sangat berarti bagi keluarga.
-                </div>
-            @endforelse
-        </div>
+               
 
-        <div class="pagination-wrap">{{ $tributes->links() }}</div>
-        </div>{{-- /#tribute-list --}}
-    </div>
+[…truncated 4592 chars — raise BridgeOptions.maxResultChars, or call the tool with a narrower scope (filter, head, pagination)…]
 
-    {{-- ── Footer ── --}}
-    <footer class="footer reveal">
-        <p class="footer-headline">
-            Please join us as we say goodbye to<br>a loving brother and friend.
-        </p>
-        <a class="footer-brand" href="{{ route('home') }}">terkasih.com</a>
-    </footer>
-
-</div>
-
-{{-- Photo lightbox modal --}}
-<div id="photo-modal" role="dialog" aria-modal="true" aria-label="Pratinjau foto">
-    <img id="pm-img" src="" alt="Foto kenangan diperbesar">
-</div>
-
-<script>
-(function () {
-    var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                var el = entry.target;
-                var delay = el.dataset.delay;
-                if (delay) { el.style.transitionDelay = delay + 'ms'; }
-                el.classList.add('visible');
-                obs.unobserve(el);
-            }
-        });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.reveal').forEach(function (el) {
-        obs.observe(el);
-    });
-
-    // 'Lainnya' custom relation input
-    var cbLainnya = document.getElementById('cb-lainnya');
-    var lainnyaWrap = document.getElementById('lainnya-input');
-    if (cbLainnya && lainnyaWrap) {
-        function syncLainnya() {
-            lainnyaWrap.style.display = cbLainnya.checked ? 'block' : 'none';
-        }
-        cbLainnya.addEventListener('change', syncLainnya);
-        syncLainnya();
-    }
-
-    // Photo lightbox
-    var modal = document.getElementById('photo-modal');
-    var pmImg = document.getElementById('pm-img');
-    if (modal && pmImg) {
-        modal.addEventListener('click', function () {
-            modal.classList.remove('open');
-            pmImg.src = '';
-        });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') { modal.classList.remove('open'); pmImg.src = ''; }
-        });
-    }
-
-    // AJAX pagination
-    function bindLightbox() {
-        if (!modal || !pmImg) { return; }
-        document.querySelectorAll('#tribute-list .tc-photo-img').forEach(function (img) {
-            img.addEventListener('click', function (e) {
-                e.stopPropagation();
-                pmImg.src = this.src;
-                modal.classList.add('open');
-            });
-        });
-    }
-
-    function bindPagination() {
-        document.querySelectorAll('#tribute-list a.pg-btn').forEach(function (a) {
-            a.addEventListener('click', function (e) {
-                e.preventDefault();
-                history.pushState(null, '', this.href);
-                loadTributes(this.href);
-            });
-        });
-    }
-
-    function loadTributes(url) {
-        var list = document.getElementById('tribute-list');
-        if (!list) { return; }
-        list.style.opacity = '0.4';
-        fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-            .then(function (res) { return res.text(); })
-            .then(function (html) {
-                var parser = new DOMParser();
-                var doc = parser.parseFromString(html, 'text/html');
-                var incoming = doc.getElementById('tribute-list');
-                if (incoming) {
-                    list.innerHTML = incoming.innerHTML;
-                    list.style.opacity = '1';
-                    bindPagination();
-                    bindLightbox();
-                    list.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            })
-            .catch(function () { list.style.opacity = '1'; });
-    }
-
-    window.addEventListener('popstate', function () {
-        loadTributes(location.href);
-    });
-
-    bindPagination();
-    bindLightbox();
-}());
-
-// Share button
-function shareMemorial() {
+ial() {
     var btn = document.getElementById('share-btn');
     var label = document.getElementById('share-label');
     var url = window.location.href.split('?')[0];

@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
-        $this->call(MemorialPageSeeder::class);
+        $this->call([
+        MemorialPageSeeder::class,
+        BudiSantosoPageSeeder::class,
+    ]);
     }
 }

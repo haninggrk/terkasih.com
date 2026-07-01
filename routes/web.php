@@ -70,7 +70,6 @@ Route::get('/eric-pramono', function () {
 });
 
 Route::prefix('{slug}')
-    ->whereIn('slug', ['ericpramono', 'dini-carolina'])
     ->controller(MemorialPageController::class)
     ->group(function (): void {
         Route::get('/', 'show')->name('memorial.show');
