@@ -32,7 +32,7 @@ class BudiSantosoPageSeeder extends Seeder
                 'mother_name' => 'Tuminah',
                 'sibling_name' => 'Narti',
                 'funeral_resting_place' => 'Rumah Duka Adijasa'."\n".'Ruang 32',
-                'burial_information' => 'Diperabukan ke Eka Praya'."\n".'Sabtu, 4 Juli 2026',
+                'burial_information' => 'Diperabukan ke Eka Praya'."\n".'Sabtu, 4 Juli 2026 (12.15)',
                 'schedule_closing_coffin' => 'Kamis, 2 Juli 2026 (15.00)',
                 'schedule_comfort_service' => 'Jumat, 3 Juli 2026 (18.30)',
                 'schedule_departure_service' => 'Sabtu, 4 Juli 2026 (11.30)',
