@@ -129,7 +129,7 @@
             object-fit: cover;
             border: 3px solid #fff;
             display: block;
-            background: #ede4d8;
+            background: #ececec;
         }
 
         .portrait-placeholder {
