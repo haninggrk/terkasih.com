@@ -32,7 +32,7 @@ class BudiSantosoPageSeeder extends Seeder
                 'mother_name' => 'Tuminah (†)',
                 'sibling_name' => null,
                 'funeral_resting_place' => 'Rumah Duka Adijasa'."\n".'Ruang 32'."\n\n".'Bisa dikunjungi mulai Jumat, 3 Juli 2026 Pk. 14:30 WIB',
-                'burial_information' => 'Diperabukan ke Eka Praya'."\n".'Minggu, 5 Juli 2026 Pk. 13:30 WIB',
+                'burial_information' => 'Ke Eka Praya'."\n".'Minggu, 5 Juli 2026 Pk. 13:30 WIB',
                 'schedule_closing_coffin' => 'Jumat, 3 Juli 2026 Pk. 15:00 WIB',
                 'schedule_comfort_service' => 'Sabtu, 4 Juli 2026 Pk. 19:00 WIB',
                 'schedule_departure_service' => 'Minggu, 5 Juli 2026 Pk. 12:00 WIB',

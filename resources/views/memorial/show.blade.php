@@ -892,8 +892,9 @@
         @endif
 
         @if ($memorialPage->burial_information && $memorialPage->burial_information !== '—')
+            @php $burialLabel = $memorialPage->slug === 'budi-santoso' ? 'Diperabukan di' : 'Dimakamkan di'; @endphp
             <div class="section-block reveal" data-delay="480">
-                <p class="s-label">Dimakamkan di</p>
+                <p class="s-label">{{ $burialLabel }}</p>
                 <p class="s-value">{{ $memorialPage->burial_information }}</p>
             </div>
         @endif
