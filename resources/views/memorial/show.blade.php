@@ -668,6 +668,13 @@
         .hero-florals { animation: fadeSlideUp 1.1s ease both; }
         .hero-body    { animation: fadeSlideUp 1.1s 0.28s ease both; }
 
+        /* ── Music pulse ── */
+        @keyframes musicPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+            70% { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+        }
+
         /* ── Scroll reveal ── */
         .reveal {
             opacity: 0;
@@ -1035,6 +1042,7 @@
     <script>
     (function() {
         var audio = document.getElementById('memorial-audio');
+        var btn = document.getElementById('music-toggle');
         var icon = document.getElementById('music-icon');
         audio.volume = 0.5;
         var started = false;
@@ -1050,7 +1058,7 @@
         function onFirstInteraction() {
             if (started) return;
             started = true;
-            audio.play().then(setIcon).catch(function() {});
+            audio.play().then(function() { btn.style.animation = ''; setIcon(); }).catch(function() {});
             document.removeEventListener('click', onFirstInteraction);
             document.removeEventListener('scroll', onFirstInteraction);
             document.removeEventListener('keydown', onFirstInteraction);
@@ -1059,8 +1067,11 @@
 
         audio.play().then(function() {
             started = true;
+            btn.style.animation = '';
             setIcon();
         }).catch(function() {
+            btn.style.boxShadow = '0 0 0 0 rgba(255,255,255,0.4)';
+            btn.style.animation = 'musicPulse 1.5s infinite';
             document.addEventListener('click', onFirstInteraction);
             document.addEventListener('scroll', onFirstInteraction);
             document.addEventListener('keydown', onFirstInteraction);
