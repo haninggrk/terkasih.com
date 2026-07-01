@@ -906,12 +906,17 @@
                 $burialLabel = $memorialPage->slug === 'budi-santoso' ? 'Diperabukan di' : 'Dimakamkan di';
                 $burialLines = explode("\n", $memorialPage->burial_information);
                 $burialPlace = array_shift($burialLines);
+                $burialAddr = count($burialLines) > 1 ? array_shift($burialLines) : '';
+                $burialTime = count($burialLines) ? array_shift($burialLines) : '';
             @endphp
             <div class="section-block reveal" data-delay="480">
                 <p class="s-label">{{ $burialLabel }}</p>
                 <p class="s-value" style="margin-bottom: 2px;">{{ $burialPlace }}</p>
-                @if (count($burialLines))
-                    <p class="s-address" style="margin-top: 0;">{{ implode("\n", $burialLines) }}
+                @if ($burialTime)
+                    <p class="s-value sm" style="margin-bottom: 2px;">{{ $burialTime }}</p>
+                @endif
+                @if ($burialAddr)
+                    <p class="s-address" style="margin-top: 0;">{{ $burialAddr }}
                         <a href="https://maps.app.goo.gl/bi9F7cHqJv7GXfzBA" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; color: #6e6862; text-decoration: none; font-size: 0.78rem; border-bottom: 1px solid #c4bfb8;" onmouseover="this.style.color='#1a1614'" onmouseout="this.style.color='#6e6862'">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Google Maps
                         </a>
