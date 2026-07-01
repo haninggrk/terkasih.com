@@ -863,15 +863,15 @@
             <div class="section-block reveal" data-delay="0">
                 <p class="s-label">Disemayamkan di</p>
                 <p class="s-value" style="margin-bottom: 2px;">{{ $placeLine }}</p>
+                @if (isset($parts[1]))
+                    <p class="s-address" style="margin-top: 6px; margin-bottom: 4px; color: #b84a4a;">{{ $parts[1] }}</p>
+                @endif
                 @if ($addressLine)
                     <p class="s-address" style="margin-top: 0;">{{ $addressLine }}
                         <a href="https://maps.app.goo.gl/c4nC4QkVxDnez3Vf8" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; color: #6e6862; text-decoration: none; font-size: 0.78rem; border-bottom: 1px solid #c4bfb8;" onmouseover="this.style.color='#1a1614'" onmouseout="this.style.color='#6e6862'">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Google Maps
                         </a>
                     </p>
-                @endif
-                @if (isset($parts[1]))
-                    <p class="s-address" style="margin-top: 10px; color: #b84a4a;">{{ $parts[1] }}</p>
                 @endif
             </div>
         @endif
@@ -911,7 +911,11 @@
                 <p class="s-label">{{ $burialLabel }}</p>
                 <p class="s-value" style="margin-bottom: 2px;">{{ $burialPlace }}</p>
                 @if (count($burialLines))
-                    <p class="s-address" style="margin-top: 0;">{{ implode("\n", $burialLines) }}</p>
+                    <p class="s-address" style="margin-top: 0;">{{ implode("\n", $burialLines) }}
+                        <a href="https://maps.app.goo.gl/bi9F7cHqJv7GXfzBA" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; margin-left: 6px; color: #6e6862; text-decoration: none; font-size: 0.78rem; border-bottom: 1px solid #c4bfb8;" onmouseover="this.style.color='#1a1614'" onmouseout="this.style.color='#6e6862'">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Google Maps
+                        </a>
+                    </p>
                 @endif
             </div>
         @endif
