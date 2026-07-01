@@ -1027,11 +1027,31 @@
 
     {{-- ── Audio ── --}}
     <div class="section reveal" id="music" style="padding-top: 24px;">
-        <p class="s-label" style="margin-bottom: 10px;">Dengarkan</p>
-        <audio controls autoplay loop style="width: 100%; max-width: 320px; display: block; margin: 0 auto; border-radius: 8px;">
+        <button id="play-music-btn" onclick="toggleMusic()" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border: 1px solid #c4bfb8; border-radius: 999px; background: transparent; color: #6e6862; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: background 0.18s, color 0.18s;">
+            <svg id="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            <span id="play-label">Putar musik</span>
+        </button>
+        <audio id="memorial-audio" loop style="display: none;">
             <source src="{{ asset('music/memorial-audio.mp3') }}" type="audio/mpeg">
         </audio>
     </div>
+    <script>
+    var audio = document.getElementById('memorial-audio');
+    var btn = document.getElementById('play-music-btn');
+    var icon = document.getElementById('play-icon');
+    var label = document.getElementById('play-label');
+    function toggleMusic() {
+        if (audio.paused) {
+            audio.play();
+            icon.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>';
+            label.textContent = 'Jeda musik';
+        } else {
+            audio.pause();
+            icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+            label.textContent = 'Putar musik';
+        }
+    }
+    </script>
 
     {{-- ── Footer ── --}}
     <footer class="footer reveal">
