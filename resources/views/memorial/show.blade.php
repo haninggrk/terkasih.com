@@ -816,6 +816,27 @@
             </div>
         @endif
 
+        @if ($memorialPage->father_name)
+            <div class="section-block reveal" data-delay="320">
+                <p class="s-label">Papa:</p>
+                <p class="s-value sm">{{ $memorialPage->father_name }}</p>
+            </div>
+        @endif
+
+        @if ($memorialPage->mother_name)
+            <div class="section-block reveal" data-delay="400">
+                <p class="s-label">Mama:</p>
+                <p class="s-value sm">{{ $memorialPage->mother_name }}</p>
+            </div>
+        @endif
+
+        @if ($memorialPage->sibling_name)
+            <div class="section-block reveal" data-delay="480">
+                <p class="s-label">Saudara/i:</p>
+                <p class="s-value sm">{{ $memorialPage->sibling_name }}</p>
+            </div>
+        @endif
+
         <div class="section-block reveal" data-delay="480">
             <p class="s-value sm" style="font-style: italic;">Beserta segenap keluarga terkasih</p>
         </div>
