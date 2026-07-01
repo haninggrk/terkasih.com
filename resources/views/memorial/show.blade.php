@@ -719,7 +719,11 @@
                     }
                 @endphp
                 @if ($photoUrl)
-                    <img class="portrait" src="{{ $photoUrl }}" alt="{{ $memorialPage->person_name }}">
+                    @php
+                        $photoFile = public_path(ltrim(parse_url($photoUrl, PHP_URL_PATH) ?: '', '/'));
+                        $photoVersion = file_exists($photoFile) ? filemtime($photoFile) : time();
+                    @endphp
+                    <img class="portrait" src="{{ $photoUrl }}?v={{ $photoVersion }}" alt="{{ $memorialPage->person_name }}">
                 @else
                     <div class="portrait portrait-placeholder">
                         <span>{{ strtoupper(substr($memorialPage->person_name, 0, 1)) }}</span>
