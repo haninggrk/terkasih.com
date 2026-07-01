@@ -856,12 +856,18 @@
         @if ($memorialPage->funeral_resting_place && $memorialPage->funeral_resting_place !== '—')
             @php
                 $parts = explode("\n\n", $memorialPage->funeral_resting_place, 2);
+                $lines = explode("\n", $parts[0]);
+                $placeLine = array_shift($lines);
+                $addressLine = implode("\n", $lines);
             @endphp
             <div class="section-block reveal" data-delay="0">
                 <p class="s-label">Disemayamkan di</p>
-                <p class="s-value">{{ $parts[0] }}</p>
+                <p class="s-value" style="margin-bottom: 2px;">{{ $placeLine }}</p>
+                @if ($addressLine)
+                    <p class="s-address" style="margin-top: 0;">{{ $addressLine }}</p>
+                @endif
                 @if (isset($parts[1]))
-                    <p class="s-address" style="margin-top: 8px; color: #b84a4a;">{{ $parts[1] }}</p>
+                    <p class="s-address" style="margin-top: 10px; color: #b84a4a;">{{ $parts[1] }}</p>
                 @endif
             </div>
         @endif
