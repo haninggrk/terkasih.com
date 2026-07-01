@@ -31,7 +31,7 @@ class BudiSantosoPageSeeder extends Seeder
                 'father_name' => 'Woe Liong Nang (†)',
                 'mother_name' => 'Tuminah (†)',
                 'sibling_name' => null,
-                'funeral_resting_place' => 'Rumah Duka Adijasa'."\n".'Ruang 32'."\n".'Jl. Kembang Kuning, Darmo, Kec. Wonokromo, Surabaya, Jawa Timur 60256'."\n\n".'Bisa dikunjungi mulai Jumat, 3 Juli 2026 Pk. 14:30 WIB',
+                'funeral_resting_place' => 'Rumah Duka Adijasa - Ruang 32'."\n".'Jl. Kembang Kuning, Darmo, Kec. Wonokromo, Surabaya, Jawa Timur 60256'."\n\n".'Bisa dikunjungi mulai Jumat, 3 Juli 2026 Pk. 14:30 WIB',
                 'burial_information' => 'Ke Eka Praya'."\n".'Minggu, 5 Juli 2026 Pk. 13:30 WIB',
                 'schedule_closing_coffin' => 'Jumat, 3 Juli 2026 Pk. 15:00 WIB',
                 'schedule_comfort_service' => 'Sabtu, 4 Juli 2026 Pk. 19:00 WIB',
