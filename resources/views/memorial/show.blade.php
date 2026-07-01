@@ -1205,8 +1205,7 @@ function shareMemorial() {
 
 {{ $memorialPage->person_name }} 🧡
 
-Informasi kedukaan dan tanda kasih dapat disampaikan melalui:
-${window.location.href}
+Informasi kedukaan dan tanda kasih dapat disampaikan melalui tautan di bawah.
 
 Semoga keluarga diberi ketabahan dan kekuatan.`;
     if (navigator.share) {
