@@ -1232,9 +1232,7 @@ function shareMemorial() {
 
 {{ $memorialPage->person_name }} 🧡
 
-Informasi kedukaan dan tanda kasih dapat disampaikan melalui tautan di bawah.
-
-Semoga keluarga diberi ketabahan dan kekuatan.`;
+Informasi kedukaan dan tanda kasih dapat disampaikan melalui tautan Terkasih berikut:`;
     if (navigator.share) {
         navigator.share({ title: title, text: text, url: url }).catch(function () {});
     } else {

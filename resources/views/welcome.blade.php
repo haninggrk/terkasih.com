@@ -190,10 +190,24 @@
 
         <p class="sub">Setiap kenangan berharga. Setiap doa berarti.</p>
 
-        {{-- <form class="search-bar" action="{{ route('memorial.search') }}" method="GET">
-            <input type="text" name="q" placeholder="Nama orang terkasih" autocomplete="off" required>
+        @if (session('search_not_found'))
+            <div style="margin-top: 20px; padding: 16px; border: 1px solid #e0cfc9; border-radius: 10px; background: #fdf8f5; text-align: center;">
+                <p style="font-size: 0.9rem; color: #7c4038; margin-bottom: 8px;">Maaf, nama yang Anda cari belum terdaftar.</p>
+                <p style="font-size: 0.82rem; color: #8a5248; line-height: 1.6;">Ingin mendaftarkan saudara terkasih?<br>Klik tombol di bawah untuk menghubungi kami.</p>
+                <a href="https://wa.me/6281250205040?text=Halo%2C%20saya%20ingin%20mendaftarkan%20halaman%20kenangan%20untuk%20anggota%20keluarga%20di%20Terkasih.com" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 10px 20px; background: #25D366; color: #fff; border-radius: 999px; text-decoration: none; font-size: 0.85rem; font-weight: 500;">Daftarkan Sekarang</a>
+            </div>
+        @endif
+
+        @php $memorialNames = \App\Models\MemorialPage::where('is_active', true)->pluck('person_name'); @endphp
+        <form class="search-bar" action="{{ route('memorial.search') }}" method="GET">
+            <input type="text" name="q" list="memorial-names" placeholder="Cari nama orang terkasih…" autocomplete="off" required>
+            <datalist id="memorial-names">
+                @foreach ($memorialNames as $name)
+                    <option value="{{ $name }}">
+                @endforeach
+            </datalist>
             <button type="submit">Cari</button>
-        </form> --}}
+        </form>
 
         <p class="contact">
             <strong>Buat halaman kenangan</strong>
