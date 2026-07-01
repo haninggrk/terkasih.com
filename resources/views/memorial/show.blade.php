@@ -1026,12 +1026,59 @@
     </div>
 
     {{-- ── Audio ── --}}
-    <div class="section reveal" id="music" style="padding-top: 24px;">
-        <p class="s-label" style="margin-bottom: 10px;">Dengarkan</p>
-        <audio controls loop style="width: 100%; max-width: 320px; display: block; margin: 0 auto; border-radius: 8px;">
-            <source src="{{ asset('music/memorial-audio.mp3') }}" type="audio/mpeg">
-        </audio>
-    </div>
+    <audio id="memorial-audio" loop preload="auto">
+        <source src="{{ asset('music/memorial-audio.mp3') }}" type="audio/mpeg">
+    </audio>
+    <button id="music-toggle" onclick="toggleMute()" aria-label="Toggle musik" style="position: fixed; top: 16px; left: 16px; z-index: 999; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">
+        <svg id="music-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </button>
+    <script>
+    (function() {
+        var audio = document.getElementById('memorial-audio');
+        var btn = document.getElementById('music-toggle');
+        var icon = document.getElementById('music-icon');
+        audio.volume = 0.5;
+        var started = false;
+
+        function playAudio() {
+            if (started) return;
+            started = true;
+            audio.play().then(function() {
+                icon.innerHTML = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
+            }).catch(function() {});
+            document.removeEventListener('click', playAudio);
+            document.removeEventListener('scroll', playAudio);
+            document.removeEventListener('keydown', playAudio);
+            document.removeEventListener('touchstart', playAudio);
+        }
+
+        // Try autoplay
+        audio.play().then(function() {
+            started = true;
+            document.removeEventListener('click', playAudio);
+            document.removeEventListener('scroll', playAudio);
+            document.removeEventListener('keydown', playAudio);
+            document.removeEventListener('touchstart', playAudio);
+        }).catch(function() {
+            // Fallback: wait for user interaction
+            document.addEventListener('click', playAudio);
+            document.addEventListener('scroll', playAudio);
+            document.addEventListener('keydown', playAudio);
+            document.addEventListener('touchstart', playAudio);
+        });
+
+        window.toggleMute = function() {
+            if (audio.volume > 0) {
+                audio.dataset.prevVolume = audio.volume;
+                audio.volume = 0;
+                icon.innerHTML = '<path d="M3 3l18 18"/><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
+            } else {
+                audio.volume = audio.dataset.prevVolume || 0.5;
+                icon.innerHTML = '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>';
+            }
+        };
+    })();
+    </script>
 
     {{-- ── Footer ── --}}
     <footer class="footer reveal">
