@@ -847,9 +847,15 @@
     <div class="section" id="funeral">
 
         @if ($memorialPage->funeral_resting_place && $memorialPage->funeral_resting_place !== '—')
+            @php
+                $parts = explode("\n\n", $memorialPage->funeral_resting_place, 2);
+            @endphp
             <div class="section-block reveal" data-delay="0">
                 <p class="s-label">Disemayamkan di</p>
-                <p class="s-value">{{ $memorialPage->funeral_resting_place }}</p>
+                <p class="s-value">{{ $parts[0] }}</p>
+                @if (isset($parts[1]))
+                    <p class="s-address" style="margin-top: 8px;">{{ $parts[1] }}</p>
+                @endif
             </div>
         @endif
 
