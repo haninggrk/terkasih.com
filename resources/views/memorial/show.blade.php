@@ -902,10 +902,17 @@
         @endif
 
         @if ($memorialPage->burial_information && $memorialPage->burial_information !== '—')
-            @php $burialLabel = $memorialPage->slug === 'budi-santoso' ? 'Diperabukan di' : 'Dimakamkan di'; @endphp
+            @php
+                $burialLabel = $memorialPage->slug === 'budi-santoso' ? 'Diperabukan di' : 'Dimakamkan di';
+                $burialLines = explode("\n", $memorialPage->burial_information);
+                $burialPlace = array_shift($burialLines);
+            @endphp
             <div class="section-block reveal" data-delay="480">
                 <p class="s-label">{{ $burialLabel }}</p>
-                <p class="s-value">{{ $memorialPage->burial_information }}</p>
+                <p class="s-value" style="margin-bottom: 2px;">{{ $burialPlace }}</p>
+                @if (count($burialLines))
+                    <p class="s-address" style="margin-top: 0;">{{ implode("\n", $burialLines) }}</p>
+                @endif
             </div>
         @endif
 
