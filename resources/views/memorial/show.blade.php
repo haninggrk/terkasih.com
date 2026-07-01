@@ -11,13 +11,21 @@
     <meta property="og:url"         content="{{ url()->current() }}">
     <meta property="og:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta property="og:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta property="og:image"       content="{{ url('images/og-default.jpg') }}">
+    @php
+        $ogPath = 'images/og-default.jpg';
+        if (file_exists(public_path('images/' . $memorialPage->slug . '-og.jpg'))) {
+            $ogPath = 'images/' . $memorialPage->slug . '-og.jpg';
+        } elseif (file_exists(public_path('images/' . $memorialPage->slug . '-og.png'))) {
+            $ogPath = 'images/' . $memorialPage->slug . '-og.png';
+        }
+    @endphp
+    <meta property="og:image"       content="{{ url($ogPath) }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:title"       content="In Loving Memory — {{ $memorialPage->person_name }}">
     <meta name="twitter:description" content="{{ $memorialPage->subtitle ?? 'Halaman kenangan digital di Terkasih.com' }}">
-    <meta name="twitter:image"       content="{{ url('images/og-default.jpg') }}">
+    <meta name="twitter:image"       content="{{ url($ogPath) }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
