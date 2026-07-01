@@ -30,7 +30,7 @@ class BudiSantosoPageSeeder extends Seeder
                 'mother_in_law' => 'Tan Giok Lwan',
                 'father_name' => 'Woe Liong Nang (†)',
                 'mother_name' => 'Tuminah',
-                'sibling_name' => 'Narti',
+                'sibling_name' => null,
                 'funeral_resting_place' => 'Rumah Duka Adijasa'."\n".'Ruang 32'."\n\n".'Bisa dikunjungi mulai Jumat, 3 Juli 2026 pk. 14.30',
                 'burial_information' => 'Diperabukan ke Eka Praya'."\n".'Minggu, 5 Juli 2026 (13.30)',
                 'schedule_closing_coffin' => 'Jumat, 3 Juli 2026 (15.00)',

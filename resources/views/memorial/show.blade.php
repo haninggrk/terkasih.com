@@ -802,38 +802,31 @@
             </div>
         @endif
 
-        @if ($memorialPage->father_in_law)
-            <div class="section-block reveal" data-delay="160">
-                <p class="s-label">Papa mertua:</p>
-                <p class="s-value sm">{{ $memorialPage->father_in_law }}</p>
-            </div>
-        @endif
-
-        @if ($memorialPage->mother_in_law)
-            <div class="section-block reveal" data-delay="240">
-                <p class="s-label">Mama mertua:</p>
-                <p class="s-value sm">{{ $memorialPage->mother_in_law }}</p>
-            </div>
-        @endif
-
         @if ($memorialPage->father_name)
-            <div class="section-block reveal" data-delay="320">
+            <div class="section-block reveal" data-delay="160">
                 <p class="s-label">Papa:</p>
                 <p class="s-value sm">{{ $memorialPage->father_name }}</p>
             </div>
         @endif
 
         @if ($memorialPage->mother_name)
-            <div class="section-block reveal" data-delay="400">
+            <div class="section-block reveal" data-delay="240">
                 <p class="s-label">Mama:</p>
                 <p class="s-value sm">{{ $memorialPage->mother_name }}</p>
             </div>
         @endif
 
-        @if ($memorialPage->sibling_name)
-            <div class="section-block reveal" data-delay="480">
-                <p class="s-label">Saudara/i:</p>
-                <p class="s-value sm">{{ $memorialPage->sibling_name }}</p>
+        @if ($memorialPage->father_in_law)
+            <div class="section-block reveal" data-delay="320">
+                <p class="s-label">Papa mertua:</p>
+                <p class="s-value sm">{{ $memorialPage->father_in_law }}</p>
+            </div>
+        @endif
+
+        @if ($memorialPage->mother_in_law)
+            <div class="section-block reveal" data-delay="400">
+                <p class="s-label">Mama mertua:</p>
+                <p class="s-value sm">{{ $memorialPage->mother_in_law }}</p>
             </div>
         @endif
 
