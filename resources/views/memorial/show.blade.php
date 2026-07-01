@@ -1028,7 +1028,7 @@
     {{-- ── Audio ── --}}
     <div class="section reveal" id="music" style="padding-top: 24px;">
         <p class="s-label" style="margin-bottom: 10px;">Dengarkan</p>
-        <audio controls autoplay loop style="width: 100%; max-width: 320px; display: block; margin: 0 auto; border-radius: 8px;">
+        <audio controls loop style="width: 100%; max-width: 320px; display: block; margin: 0 auto; border-radius: 8px;">
             <source src="{{ asset('music/memorial-audio.mp3') }}" type="audio/mpeg">
         </audio>
     </div>
